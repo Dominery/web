@@ -10,6 +10,7 @@
         * [表格标签](doc/base/html/table.md)
     * [CSS3](doc/base/css/README.md)
         * [基础入门](doc/base/css/firststep.md)
+        * [选择器](doc/base/css/selector.md)
     * [javaScript](doc/base/javascript/README.md)
 * [组件化与WebApp开发](doc/webApp/README.md)
     * [ES6](doc/webApp/es6/README.md)
