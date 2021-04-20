@@ -40,4 +40,32 @@ font-family:serif, "Times New Roman", "微软雅黑";
 
 ### 段落和行相关属性
 
+| 属性        | 作用                     | 属性值                         |
+| ----------- | ------------------------ | ------------------------------ |
+| text-indent | 首行文本内容之前的缩进量 | em为单位                       |
+| line-height | 定义行高                 | px、没有单位的数值、百分数、em |
+| text-align  | 设置文本对齐方式         | center、left、right            |
+
+font合写属性
+
+font属性可以用来作为font-style、font-weight、font-size、line-height、font-family属性的合写。
+
+```css
+font:italic bold 20px/1.5 Arial,"Microsoft Yahei";
+```
+
+> font属性合写时，必须设置font-size和font-family才能生效。合写时有默认行高。
+
 ### 继承性
+
+文本相关属性普遍具有继承性，只需要给祖先标签设置，即可在后代所有标签中生效。
+
+> color 、font-、list-、text-、line-等属性有继承性
+
+所以在开发中，通常设置body标签的字号、颜色、行高作为网页的默认样式。
+
+* 就近原则
+
+  在继承情况下，选择器权重计算失效，需要使用就近原则。如果选择器距离同样近，那么需要依靠选择器权重计算进行判断。
+
+  > 如果选择器所选择的元素与目标元素的层级更少，则称这个选择器更近。
