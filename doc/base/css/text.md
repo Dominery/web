@@ -46,6 +46,8 @@ font-family:serif, "Times New Roman", "微软雅黑";
 | line-height | 定义行高                 | px、没有单位的数值、百分数、em |
 | text-align  | 设置文本对齐方式         | center、left、right            |
 
+> 行高等于盒子高，可以让文字垂直居中
+
 font合写属性
 
 font属性可以用来作为font-style、font-weight、font-size、line-height、font-family属性的合写。
