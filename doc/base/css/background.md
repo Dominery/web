@@ -59,12 +59,69 @@ background-image属性用来设置背景图片，图片路径要写到url()圆�
 
 * 背景固定
 
+    background-attachment属性决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动。
+
+    | 属性值 | 意义                                  |
+    | ------ | ------------------------------------- |
+    | fixed  | 自己滚动条不动，外部滚动条不动        |
+    | local  | 自己滚动条动，外部滚动条动            |
+    | scroll | 自己滚动条不动，外部滚动条动（默认值) |
+
 * 图片位置
+
+    background-position属性可以设置背景图片出现在盒子的什么位置。
+
+    可以用top、bottom、center、left、right描述图片出现的位置，如果只使用一个值，第二个值默认是center。
+
+    **css精灵**
+
+    将多个小图标合并制作到一张图片上，使用background-position属性单独显示其中一个，这样的技术叫做CSS精灵技术，也叫作CSS雪碧图。
+
+    CSS精灵可以减少HTTP请求数，加快网页显示速度，但不方便测量、后期改动麻烦。
+
+    > 精灵图属于背景图片中的一种。当给元素设置背景图时，如果背景图比较大，会默认显示背景图的左上角，如果想要显示背景图中的某部分，需要将背景图向上向左移动，这需要设置background-position属性为负值。
 
 * 综合属性
 
+    常用的背景属性可以合写到background属性中。
+
+    ```css
+    selector{
+        background:white url(images/prince.png) no-repeat center center;
+    }
+    ```
+
+
 ### 渐变背景
 
-线性渐变
+* 线性渐变
+
+  盒子的background-image属性可以用linear-gradient()形式创建线性渐变背景。
+
+  至少需要使用三个属性值代表渐变方向、开始颜色、结束颜色。
+
+  渐变方向可以用度数(deg)表示。
+
+  可以有多个颜色值，并且可以用百分数定义它们出现的位置。
+
+  ```css
+  selector{
+      background-image:linear-gradient(to right,blue,red);
+  }
+  ```
 
 径向渐变
+
+盒子的background-image属性可以用radial-gradient()形式创建径向渐变背景。径向渐变第一个参数是用空格隔开的圆心坐标，
+
+### 浏览器私有前缀
+
+不同浏览器有不同的私有前缀，用来对试验性质的CSS属性加以标识
+
+| 品牌     | 前缀     |
+| -------- | -------- |
+| Chrome   | -webkit- |
+| Firefox  | -moz-    |
+| IE、Edge | -ms-     |
+| 欧朋     | -o-      |
+
