@@ -12,6 +12,8 @@ transition过渡属性是cSS3浓墨重彩的特性，过渡可以为一个元素
 
   动画细腻，内存开销小。
 
+#### 基本使用
+
 * 使用
 
   transition属性有4个要素，分别表示需要过渡的属性、动画的总时长、变化速度曲线、延迟时间。
@@ -39,11 +41,18 @@ transition过渡属性是cSS3浓墨重彩的特性，过渡可以为一个元素
   | transition-timing-function | 动画变化曲线   |
   | transition-delay           | 延迟时间       |
 
-  
 
-过渡的缓存效果
+#### 过渡的缓动效果
 
-过渡效果实战
+* 常用的缓动参数
+
+![](../../../images/timing-func.png)
+
+* 自定义动画缓动参数
+
+  缓动参数是一种cubic-bezier(贝塞尔曲线)
+
+  贝塞尔曲线可以通过网站https://cubic-bezier.com/生成
 
 ### 动画
 
