@@ -1,5 +1,7 @@
 ## 变形
 
+transform属性的属性值包含平移、旋转、缩放等多个效果，对同一个元素设置多个transform属性时，后面的transtorm会覆盖前面的，而不会叠加。
+
 ### 2D变形
 
 * 旋转变形
@@ -11,6 +13,8 @@
   ```
 
   可以使用transform-origin属性设置自己的自定义变换原点，默认绕中心旋转。
+
+  
 
 * 缩放变形
 
@@ -49,12 +53,16 @@
 
   将transform属性的值设置为rotatex()或者rotateY()，即可实现绕横轴、纵轴旋转。
 
+  如下为各轴旋转方向
+
+  ![](../../../images/transform_coordinate.png)
+
   **perspective属性**
 
   perspective属性用来定义透视强度，可以理解为“人眼到舞台的距离”，单位是px。
 
   父元素，又称舞台，需要设置perspective属性。当前元素，又称演员，设置transform属性。
 
-空间移动
+* 空间移动
 
-当元素进行3D旋转后，即可继续添加translatex()、translateY()、translateZ()属性让元素在空间进行移动
+  当元素进行3D旋转后，即可继续添加translatex()、translateY()、translateZ()属性让元素在空间进行移动

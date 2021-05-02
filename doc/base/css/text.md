@@ -34,9 +34,35 @@ font-family:serif, "Times New Roman", "微软雅黑";
 
  字体通常必须是用户计算机汇总已经安装好的字体。如果用户计算机中没有，必须提供字体文件，通过@font-face方式定义字体。
 
+```css
+@font-face {
+    font-family: 'webfont';
+    font-display: swap;
+    src: url('fonts/webfont.eot');
+    /* IE9*/
+    src: url('fonts/webfont.eot') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('fonts/webfont.woff2') format('woff2'),
+        url('fonts/webfont.woff') format('woff'),
+        /* chrome、firefox */
+        url('fonts/webfont.ttf') format('truetype'),
+        /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+        url('fonts/webfont.svg') format('svg');
+    /* iOS 4.1- */
+}
+```
+
 > 字体文件根据操作系统和浏览器不同，有eot、 woff2、woff、ttf、svg文件格式，需要同时有这5种文件。
 >
 > 阿里巴巴提供了一套免费商用授权的普惠字体，网址https://www.iconfont.cn/webfont
+
+### 字体图标的使用
+
+1. 登录iconfont官网，选择图标，加入到购物车
+2. 将选好的图标添加至项目
+3. 在“我的项目”中点击下载至本地，解压后将字体文件复制到本地项目的fonts文件夹中
+4. 夹根据demo_index.html的指引复制代码到css文件中，同时根据实际情况调整路径
+5. 在使用的地方添加相应的编码和类样式名
 
 ### 段落和行相关属性
 
