@@ -1,7 +1,7 @@
 # Web
 
 * [Introduction](README.md)
-* [基础](doc/base/README.md)
+* [前端基础](doc/base/README.md)
     * [HTML5](doc/base/html/README.md)
         * [语法与基础标签](doc/base/html/gram_basetag.md)
         * [列表标签](doc/base/html/list.md)
@@ -20,6 +20,9 @@
         * [变形](doc/base/css/transform.md)
         * [过渡与动画](doc/base/css/animate.md)
     * [javaScript](doc/base/javascript/README.md)
+        * [js语法与变量](doc/base/javascript/grammar.md)
+        * [数据类型](doc/base/javascript/datatype.md)
+        * [表达式与运算符](doc/base/javascript/expression.md)
 * [组件化与WebApp开发](doc/webApp/README.md)
     * [ES6](doc/webApp/es6/README.md)
     * [网络请求](doc/webApp/web/README.md)
