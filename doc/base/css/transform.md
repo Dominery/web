@@ -1,6 +1,6 @@
 ## 变形
 
-transform属性的属性值包含平移、旋转、缩放等多个效果，对同一个元素设置多个transform属性时，后面的transtorm会覆盖前面的，而不会叠加。
+transform属性的属性值包含平移、旋转、缩放等多个效果，对同一个元素设置多个transform属性时，后面的transtorm会覆盖前面的，而不会叠加，transform属性对行内元素不生效。
 
 ### 2D变形
 
