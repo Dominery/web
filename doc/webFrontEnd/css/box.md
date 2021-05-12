@@ -143,11 +143,143 @@ box-sizing属性大量应用于移动网页制作中，因为它结合百分比�
 | inline       | 将元素转为行内元素，将元素转为行内元素的应用不多见 |
 | inline-block | 将元素转为行内块                                   |
 
+## overflow
+
+如果盒内元素宽高超出盒子本身宽高，则可以通过设置overflow值来决定显示效果。
+
+| 属性值  | 说明                             |
+| ------- | -------------------------------- |
+| visible | 超出部分依旧显示                 |
+| hidden  | 超出部分被隐藏                   |
+| scroll  | 超出部分出现滚动条               |
+| auto    | 根据尺寸来决定xy轴是否出现滚动条 |
+| inherit | 兼容性问题                       |
+
+### overflow-x
+
+如果overflow-x和overflow-y值相同，则等同于overflow。如果overflow-x和overflow-y值不同，且其中一个属性的值被赋予visible，而另外一个被赋予hidden、scroll、auto，那么这个visible会被重置为auto。
+
+### 兼容性
+
+宽度设定机制：
+
+```html
+<style>
+    .box{width:400px;height:100px;overflow:auto;}
+    .content{width:100%;height:200px;bacground-color:red;}
+</style>
+<div class="box">
+   <div class="content">
+    </div>
+</div>
+```
+
+在IE7下会出现水平滚动条，IE8则不会，因为IE7将100%宽度算成400px，而垂直滚动条本身占据一定宽度。可以删除100%，去掉水平滚动条。
+
+### 作用前提
+
+1. 不是display:inline
+2. 对应方位尺寸限制，width、height、max-width、max-height、absolute拉伸
+3. 对于单元格td，还需要设置table为table-layout：fixed
+
+### overflow应用
+
+1. visible
+
+   IE7浏览器下，文字越多，按钮两侧padding留白就越大，可以给按钮添加overflow：visible消除这个特性。
 
 
 
+### 滚动条
+
+#### 出现的条件
+
+1. overflow：auto/overflow：scroll
+2. 本身自带滚动条的元素，textarea、html
+
+#### html与滚动条
+
+无论什么浏览器，默认滚动条均来自&lt;htm1> !而不是&lt;body>标签。
+
+> IE7-浏览器默认∶html { overflow-y: scroll;}
+>
+> IE8＋等浏览器默认:html { overflow: auto; }
+
+* 去除滚动条
+
+  如果想去除页面默认滚动条，只需要设置html的overflow为hidden。
+
+* JS获取滚动高度
+
+  Chrome浏览器是:document.body. scrollTop ;其他浏览器是∶
+  document.documentElement.scrollTop ;
+
+    ```javascript
+  var st = document.documentElement.scrollTop||document.body.scrollTop;
+    ```
+
+#### padding-bottom缺失现象
+
+如果容器内元素设置padding-bottom，除了Chrome浏览器会显示padding-bottom，其余所有浏览器padding-bottom将缺失。这将导致不一样的scrollHeight（元素内容高度）。
+
+#### 宽度机制
+
+滚动条会占用容器的可用宽度或高度。而这可能会给原本布局造成问题。
+
+可以根据容器宽度减去内部元素宽度，算出滚动条宽度，均是17px。
+
+水平居中跳动问题修复
+
+1. html{overflow-y:scorll;}
+
+2. .container{padding-left:calc(100vw-100%)}IE9+浏览器
+
+   > 100vw-浏览器宽度；100%-可用内容宽度
+
+#### 自定义滚动条-webkit
+
+| 属性                            | 说明     |
+| ------------------------------- | -------- |
+| ::-webkit-scrollbar             | 整体部分 |
+| ::-webkit-scrollbar-button      | 两端按钮 |
+| ::-webkit-scrollbar-track       | 外层轨道 |
+| ::-webkit-scrollbar-track-piece | 内层轨道 |
+| ::-webkit-scrollbar-thumb       | 滚动滑块 |
+| ::-webkit-scrollbar-corner      | 边角     |
+
+* 实际开发示例
+
+    ```css
+    ::-webkit-scrollbar { /*血槽宽度*/
+    width: 8px; height: 8px;
+    }
+    ::-webkit-scrollbar-thumb {/*拖动条*/
+    background-color: rgba(o,o,0,.3);border-radius: 6px;
+    }
+    ::-webkit-scrollbar-track {/*背景槽*/
+    background-color: #ddd;
+    border-radius: 6px;
+    }
+    ```
+
+* ios原生滚动回调效果
+
+  ```css
+  -webkit-overflow-scrolling:touch;
+  ```
 
 
+### overflow与BFC
 
+ overflow除了visible属性值外都会触发容器BFC化。
 
+作用
+
+1. 清除浮动影响
+
+   兼容性到IE7，通过overflow:hidden清除浮动影响存在副作用，容器之外的内部元素不可见。
+
+2. 避免margin穿透问题
+
+3. 两栏自适应布局
 

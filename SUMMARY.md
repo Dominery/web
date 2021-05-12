@@ -25,6 +25,7 @@
           * [变量与运算符](doc/webFrontEnd/javascript/base/operator.md)
           * [流程控制](doc/webFrontEnd/javascript/base/processcontrol.md)
           * [数组](doc/webFrontEnd/javascript/base/array.md)
+          * [函数](doc/webFrontEnd/javascript/base/func.md)
 * [组件化与WebApp开发](doc/webApp/README.md)
     * [ES6](doc/webApp/es6/README.md)
     * [网络请求](doc/webApp/web/README.md)
