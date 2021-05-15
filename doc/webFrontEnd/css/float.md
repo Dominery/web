@@ -130,6 +130,16 @@ BFC作用
    > overflow:hidden;表示溢出隐藏，溢出盒子边框的内容将会被隐藏
    > overflow:hidden;是非常好用的让盒子形成BFC的方法
 
+BFC属性的差异
+
+| 属性                 | 特点                                    |
+| -------------------- | --------------------------------------- |
+| overflow:hidden      | 自适应，但“溢出不可见”限制应用场景      |
+| float                | 包裹性+破坏性，无法自适应，块状浮动布局 |
+| position:absolute    | 脱离文档流                              |
+| display:inline-block | 包裹性，无法自适应                      |
+| display:table-cell   | 包裹性，天生无溢出，绝对宽度也能适应    |
+
 **浏览器差异**
 
 IE6、7浏览器使用haslayout机制，和BFC规范略有差异，比如IE浏览器可以使用zoom:1属性“让盒子拥有layout"

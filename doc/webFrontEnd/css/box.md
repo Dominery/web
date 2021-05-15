@@ -6,13 +6,13 @@
 
 ### width和height属性
 
-#### width
+**width**
 
 * width属性表示盒子内容的宽度
 * width属性的单位通常是px，移动端开发也会涉及百分数、rem等单位
 * 当块级元素(div、h系列、li等）没有设置width属性时，它将自动撑满，但这并不意味着width可以继承
 
-#### height
+**height**
 
 * height属性表示盒子内容的高度
 * height属性的单位通常是px，移动端开发也会涉及百分数、rem等单位
@@ -155,44 +155,38 @@ box-sizing属性大量应用于移动网页制作中，因为它结合百分比�
 | auto    | 根据尺寸来决定xy轴是否出现滚动条 |
 | inherit | 兼容性问题                       |
 
-### overflow-x
+* overflow-x
 
-如果overflow-x和overflow-y值相同，则等同于overflow。如果overflow-x和overflow-y值不同，且其中一个属性的值被赋予visible，而另外一个被赋予hidden、scroll、auto，那么这个visible会被重置为auto。
+  如果overflow-x和overflow-y值相同，则等同于overflow。如果overflow-x和overflow-y值不同，且其中一个属性的值被赋予visible，而另外一个被赋予hidden、scroll、auto，那么这个visible会被重置为auto。
 
-### 兼容性
+* 宽度设定兼容性：
 
-宽度设定机制：
-
-```html
-<style>
-    .box{width:400px;height:100px;overflow:auto;}
-    .content{width:100%;height:200px;bacground-color:red;}
-</style>
-<div class="box">
-   <div class="content">
+    ```html
+    <style>
+        .box{width:400px;height:100px;overflow:auto;}
+        .content{width:100%;height:200px;bacground-color:red;}
+    </style>
+    <div class="box">
+       <div class="content">
+        </div>
     </div>
-</div>
-```
+    ```
 
-在IE7下会出现水平滚动条，IE8则不会，因为IE7将100%宽度算成400px，而垂直滚动条本身占据一定宽度。可以删除100%，去掉水平滚动条。
+    在IE7下会出现水平滚动条，IE8则不会，因为IE7将100%宽度算成400px，而垂直滚动条本身占据一定宽度。可以删除100%，去掉水平滚动条。
 
-### 作用前提
+* 作用前提
 
-1. 不是display:inline
-2. 对应方位尺寸限制，width、height、max-width、max-height、absolute拉伸
-3. 对于单元格td，还需要设置table为table-layout：fixed
+    1. 不是display:inline
+    2. 对应方位尺寸限制，width、height、max-width、max-height、absolute拉伸
+    3. 对于单元格td，还需要设置table为table-layout：fixed
 
-### overflow应用
+* visible
 
-1. visible
-
-   IE7浏览器下，文字越多，按钮两侧padding留白就越大，可以给按钮添加overflow：visible消除这个特性。
-
-
+    IE7浏览器下，文字越多，按钮两侧padding留白就越大，可以给按钮添加overflow：visible消除这个特性。
 
 ### 滚动条
 
-#### 出现的条件
+出现的条件
 
 1. overflow：auto/overflow：scroll
 2. 本身自带滚动条的元素，textarea、html
@@ -273,7 +267,7 @@ box-sizing属性大量应用于移动网页制作中，因为它结合百分比�
 
  overflow除了visible属性值外都会触发容器BFC化。
 
-作用
+#### 作用
 
 1. 清除浮动影响
 
@@ -283,3 +277,45 @@ box-sizing属性大量应用于移动网页制作中，因为它结合百分比�
 
 3. 两栏自适应布局
 
+   虽然overflow:hidden可以设置两栏自适应布局，但副作用明显，推荐使用：
+
+   ```css
+   .cell{
+       display:table-cell;width:2000px;//IE8+
+       *display:inline-block;*width:auto;//IE7- 伪BFC特性
+   }
+   ```
+
+### overflow与absolute
+
+当设置overflow属性为非visible的容器内子元素是绝对定位时，overflow可能失效。
+
+失效原因：绝对定位元素不总是被父级overflow属性剪裁，尤其当overflow在绝对定位元素及其包含块之间的时候。
+
+> 包含块：含position:relative/absolute/fixed声明的父级元素，没有则body元素
+
+#### 避免失效方式
+
+1. overflow元素自身为包含块
+2. overflow元素子元素为包含块
+3. 任意合法transform声明当作包含块
+   * overflow元素自身transform IE9+/FireFox
+   * overflow元素子元素transform Chrome/Safari/Opera/FireFox/IE9+
+
+### 其余关联属性
+
+#### resize
+
+resize可以拉伸元素尺寸，该元素作用前提是overflow属性不能是visible。
+
+| 属性值     | 说明     |
+| ---------- | -------- |
+| both       | 水平垂直 |
+| horizontal | 只能水平 |
+| vertical   | 只能垂直 |
+
+resize拖拽区域大小为17px*17px
+
+#### text-overflow
+
+text-overflow：ellipsis，设置文本溢出省略号表示，该溢出效果需要设置overflow：hidden。

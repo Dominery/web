@@ -74,6 +74,8 @@ font-family:serif, "Times New Roman", "微软雅黑";
 
 > 行高等于盒子高，可以让文字垂直居中
 
+行高决定内联盒子高度;行间距，可大可小(甚至负值)，保证高度正好等同于行高。
+
 font合写属性
 
 font属性可以用来作为font-style、font-weight、font-size、line-height、font-family属性的合写。
