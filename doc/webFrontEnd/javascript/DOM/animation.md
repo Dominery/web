@@ -61,7 +61,7 @@ JS和CSS3结合实现动画规避了定时器制作动画的缺点
 ```javascript
 var lock=false;
 function Lock(processFunc){
-    if(!lock)return;
+    if(lock)return;
     processFunc();
     setTimeInterval(()=>lock=true,2000);
 }

@@ -82,6 +82,8 @@ innerText属性只能以纯文本的形式设置节点中的内容
 
 document.createElement()方法用于创建一个指定tagname的HTML元素节点
 
+**克隆节点**
+
 cloneNode()方法可以克隆节点，可以填写布尔值参数，表示是否采用深度克隆:如果为true，则该节点的所有后代节点也都会被克隆，如果为false，则只克隆该节点本身
 
 #### 挂载
