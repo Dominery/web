@@ -44,6 +44,7 @@
         * [内置对象](doc/webFrontEnd/javascript/built-in_object/READE.md)
             * [包装类](doc/webFrontEnd/javascript/built-in_object/pack.md)
             * [Date对象](doc/webFrontEnd/javascript/built-in_object/date.md)
+            * [正则表达式](doc/webFrontEnd/javascript/built-in_object/regex.md)
 * [组件化与WebApp开发](doc/webApp/README.md)
     * [ES6](doc/webApp/es6/README.md)
     * [网络请求](doc/webApp/web/README.md)
