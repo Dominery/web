@@ -15,6 +15,13 @@
    var arr2 = new Array(1,2,3,4,5);
    var arr3 = new Array(4);
    ```
+   
+3. 创建指定长度填充数字的数组
+
+   ```javascript
+   new Array(num).fill(0);
+   [...new Array(num)].map(n=>0);
+   ```
 
 访问数组项
 
