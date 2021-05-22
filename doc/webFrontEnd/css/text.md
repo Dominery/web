@@ -74,9 +74,61 @@ font-family:serif, "Times New Roman", "微软雅黑";
 
 > 行高等于盒子高，可以让文字垂直居中
 
+#### line-height
+
 行高决定内联盒子高度;行间距，可大可小(甚至负值)，保证高度正好等同于行高。
 
-font合写属性
+**属性值说明**
+
+* normal
+
+  默认属性值，受用户浏览器和元素字体影响。
+
+* 数值
+
+  行高为当前元素的font-size大小的倍数。所有可继承的元素根据自身的font-size重新计算行高。
+
+* 百分数
+
+  相对于设置了该属性的元素font-size大小计算。当前元素根据font-size计算行高，将该数值继承给子元素。
+
+**图片**
+
+如果图片放在容器元素中，图片底部与父容器间存在间隙，如果改变行高，则会影响该间隙大小。
+
+这种现象是因为浏览器默认图片底部需要与文字基线对齐，行高不会影响图片实际占据的高度。
+
+消除图片底部间隙的方法
+
+1. 图片块状化-无基线对齐
+
+2. 底线对齐
+
+   ```css
+   img{vertical-align:bottom;}
+   ```
+
+3. 行高足够小-基线位置上移
+
+**应用**
+
+1. 图片水平垂直居中-IE8+
+
+   ```css
+   .box{line-height:300px;text-align:center;}
+   .box>img{vertical-aligh:middle;}
+   ```
+
+2. 多行文本水平垂直居中-IE8+
+
+   ```css
+   .box{line-height:250px;text-align:center;}
+   .box>.text{display:inline-block;line-height:normal;text-align:left;vertical-align:middle;}
+   ```
+
+   
+
+#### font合写属性
 
 font属性可以用来作为font-style、font-weight、font-size、line-height、font-family属性的合写。
 
