@@ -90,15 +90,32 @@
 
     当尺寸限制、拉伸以及margin: auto同时出现的时候，就会有绝对定位元素的绝对居中效果，该特性兼容到IE8。
 
-* 垂直居中
+* 垂直水平居中
+
+  1. absolute结合margin
 
   ```css
   selector {
       position:absolute;
   	top:50%;
+      left:50%;
   	margin-top:-自身高度一半;
+      margin-left:-自身宽度一半;
   }
   ```
+
+  2. absolute结合transform
+
+     该方法可以适应容器本身宽高不确定的情况。
+
+     ```css
+     selector{
+         position:absolute;
+         left:50%;
+         top:50%;
+         transform:translate(-50%,-50%);
+     }
+     ```
 
 * 用途
 
