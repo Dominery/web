@@ -48,6 +48,7 @@
         * [ES6](doc/webFrontEnd/javascript/es6/README.md)
             * [变量声明](doc/webFrontEnd/javascript/es6/variable.md)
             * [箭头函数](doc/webFrontEnd/javascript/es6/arrowfunc.md)
+            * [解构赋值](doc/webFrontEnd/javascript/es6/deconstrust.md)
 * [组件化与WebApp开发](doc/webApp/README.md)
     * [网络请求](doc/webApp/web/README.md)
     * [组件化](doc/webApp/component/README.md)
