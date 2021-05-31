@@ -45,6 +45,8 @@
             * [包装类](doc/webFrontEnd/javascript/built-in_object/pack.md)
             * [Date对象](doc/webFrontEnd/javascript/built-in_object/date.md)
             * [正则表达式](doc/webFrontEnd/javascript/built-in_object/regex.md)
+            * [Set](doc/webFrontEnd/javascript/built-in_object/set.md)
+            * [Map](doc/webFrontEnd/javascript/built-in_object/map.md)
         * [ES6](doc/webFrontEnd/javascript/es6/README.md)
             * [变量声明](doc/webFrontEnd/javascript/es6/variable.md)
             * [箭头函数](doc/webFrontEnd/javascript/es6/arrowfunc.md)
