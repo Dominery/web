@@ -73,11 +73,12 @@ typeof运算符可以检测值或变量的类型。类型和typeof检测结果�
   | toUpperCase()  | 变为大写                 |
   | toLowerCase()  | 变为小写                 |
   | indexOf()      | 检索字符串               |
-| includes()     | 判断是否包含特定字符 es6 |
-  | padStart()     | 头部补全字符串 es6       |
-| padEnd()       | 尾部补全字符串 es6       |
-  | trim()         | 清除字符串首尾空格 es6   |
-|                |                          |
+| replace()      | 替换第一个匹配的内容     |
+  | includes()     | 判断是否包含特定字符 es6 |
+| padStart()     | 头部补全字符串 es6       |
+  | padEnd()       | 尾部补全字符串 es6       |
+| trim()         | 清除字符串首尾空格 es6   |
+  | replaceAll()   | 替换所有匹配内容 es6     |
   
   * 切片方法辨析
   
@@ -102,6 +103,12 @@ typeof运算符可以检测值或变量的类型。类型和typeof检测结果�
   * 首尾空格清除
   
     trimStart()、trimLeft()都用于去除首空格，trimEnd()、trimRight()用于去除尾空格
+    
+  * 替换方法
+  
+    replaceAll方法接收两个参数searchValue和replacement。searchValue表示搜索模式，可以字符串或全局的正则表达式，replacement是待替换的文本。
+  
+    如果replaceAll的搜索模式是一个不带g修饰符的正则表达式，则replaceAll会报错。
 
 #### 布尔类型
 
