@@ -53,6 +53,7 @@
             * [解构赋值](doc/webFrontEnd/javascript/es6/deconstrust.md)
             * [遍历器](doc/webFrontEnd/javascript/es6/iterator.md)
             * [Promise](doc/webFrontEnd/javascript/es6/promise.md)
+            * [Class](doc/webFrontEnd/javascript/es6/class.md)
 * [组件化与WebApp开发](doc/webApp/README.md)
     * [网络请求](doc/webApp/web/README.md)
     * [组件化](doc/webApp/component/README.md)
