@@ -14,11 +14,13 @@ es6新增模块系统用于管理多个模块，如果html中需要加载模块�
 
 一个模块如果没有导出，可以通过`import "./demo.js"`语法将其导入，被导入的代码会执行且仅执行一遍。
 
-导出的内容可以是常量、函数、文件、模块等，只要是js中能够作为参数传递的数据类型都可以。
+导出的内容可以是常量、函数、文件、模块等。
+
+import和export只能在模块顶层执行。
 
 ### default方式
 
-default方式是指通过`export default`导出数据类型，一个模块只能有一个默认导出。
+default方式是指通过`export default`导出数据类型，不要求是标识符，可以是匿名函数、匿名类等。一个模块只能有一个默认导出。
 
 导出文件<airplane.js>
 
@@ -41,7 +43,9 @@ import meetsSpeedRangeRequirements from './airplane.js';
 
 ### Named方式
 
-#### 基本用法
+export后必须是声明或{}语句，只有标识符能够被导出。import需要使用{}，标识符命名必须与导出模块中的相同。
+
+#### 用法
 
 * 一次性导出或导入
 
@@ -100,6 +104,23 @@ import meetsSpeedRangeRequirements from './airplane.js';
 
   导入方式同前一个。
 
+* 整体导入
+
+  需要对整个导入模块起别名，导入会包括default，如果default导出的不是标识符，则其属性名为default。
+
+  ```javascript
+  import * as Carte from './menu';
+  Carte.chefsSpecial;
+  Carte.isVeg();
+  Carte.isLowSodium(); 
+  ```
+
+* 同时导入
+
+  ```javascript
+  import meetsSpeedRangeRequirements,{availableAirplanes, flightRequirements,meetsStaffRequirements} from './airplane';
+  ```
+
 #### 起别名
 
 此类导入方式基于named一次性导出或导入方式，通过as关键字给变量起别名。
@@ -113,19 +134,29 @@ export {availableAirplanes as aircrafts, flightRequirements as flightReqs,meetsS
 导入方式
 
 1. 基本导入方式同前一个
-
 2. 起别名导入，参考导出方式
 
-3. 对整个导入模块起别名
+### 注意事项
 
-   ```javascript
-   import * as Carte from './menu';
-   Carte.chefsSpecial;
-   Carte.isVeg();
-   Carte.isLowSodium(); 
-   ```
+* 模块顶层的this指向
 
-## Node模块系统
+  在一个模块顶层作用域中，this指向undefined。
+
+* import()和import
+
+  import命令具有提升效果，会提升到整个模块的头部，率先执行
+
+  import()可以按条件导入，会返回Promise对象。
+
+* 导入导出的复合写法
+
+  在导入的同时将其导出出去，在当前模块是无法访问导入的变量
+
+  ```javascript
+  export {name} from './demo.js';
+  ```
+
+##  Node模块系统
 
 此类导入方式借助`module`对象通过`module.exports`赋予js文件中某数据类型能够被导入的权限，通过`require(<filename>)`导入数据类型，这种导入方式主要在Node.js中使用。每个运行在Node上的js文件都存在一个有导出属性的本地`module`对象。`require(<filename>)`赋予的变量名不必须与导出文件中的变量相同，原则上保持一致。
 
