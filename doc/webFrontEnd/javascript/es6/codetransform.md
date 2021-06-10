@@ -8,6 +8,18 @@ Babel本身可以编译ES6的大部分语法，比如let、const、箭头函数�
 
 Babel一般需要配合Webpack 来编译模块语法
 
+#### API替换
+
+Babel只能在语法层面上进行替换，像Object.assign、Promise等API，Babel无能为力。如果想要替换这些api使之编译成es6之前的版本，需要引入额外的包。
+
+1. 安装core-js
+
+   ```
+   npm install --save-dev core-js
+   ```
+
+2. 在顶层文件中使用impoert导入core-js/stable
+
 ### CLI环境使用
 
 [Babel官网](https://babeljs.io/)提供了多种使用Babel的方式。CLI是命令行模式，需要安装Node.js。
@@ -52,7 +64,7 @@ Babel一般需要配合Webpack 来编译模块语法
    npm install @babel/preset-env --save-dev
    ```
 
-   在根目录下创建.babelconfig.json文件，书写如下内容
+   在根目录下创建babel.config.json文件，书写如下内容
 
    ```json
    {  "presets": ["@babel/preset-env"] }
@@ -87,7 +99,7 @@ webpack是静态模块打包器，当webpack处理应用程序时，会将所有
    
    module.exports = {
      entry: './src/index.js',
-     mode:'development',//指定是开发模式,默认是生成模式
+     mode:'development',//指定是开发模式,默认是生产模式
      output: {
          path: path.resolve(__dirname, 'dist'),
        filename: 'bundle.js'
@@ -105,13 +117,126 @@ webpack是静态模块打包器，当webpack处理应用程序时，会将所有
 
 ### 核心概念
 
-entry
+#### entry
 
-output
+entry用来指定入口文件，其属性值可以是字符串或对象。
 
-loader
+* 单入口文件
 
-plugins
+  可以使用字符串给出文件路径。
+
+* 多入口文件
+
+  使用对象保存文件路径数据
+
+  ```
+  entry:{
+  	main:'./src/index.js',
+  	search:'./src/search.js'
+  }
+  ```
+
+#### output
+
+output属性值是对象，对象里有path和filename两个属性，分别表示输出目录，输出文件名。
+
+* 单出口文件
+
+  filename属性值为出口文件名。
+
+* 多出口文件
+
+  filename属性值为`[name].js`，name会对entry中的属性名进行匹配。
+
+#### loader
+
+loader可以让webpack能够处理非js文件的模块。
+
+**babel-loader**
+
+babel-loader是webpack和babel的接口，可以让webpack先调用babel编译代码后在打包。
+
+1. 安装babel相关包
+
+   ```
+   npm install --save-dev babel-loader@8.1.0 @babel/core@7.11.0 @babel/preset-env@7.11.0
+   ```
+
+2. 配置loader
+
+   与output等同级添加module属性。
+
+   ```javascript
+   module.exports = {
+       module:{
+           rules:[{
+               test:/\.js$/,//筛选文件
+               exclude:/node_modules/,//排除文件
+               loader:'babel-loader'
+           }]
+   	}
+   }
+   ```
+
+#### plugins
+
+loader被用于帮助webpack处理各种模块，而插件则可以用于执行范围更广的任务。
+
+**html-webpack-plugin**
+
+该插件用于在webpack处理完js文件后，将其引入到所需的html文件。
+
+1. npm安装
+
+   ```
+   npm install --save-dev html-webpack-plugin
+   ```
+
+2. 配置插件
+
+   导入插件后在module.exports中将其实例化添加到plugins属性值中。
+
+   * 基本功能
+
+       单页面只需要实例化一遍。
+
+       多页面的基本条件：
+
+       1. 实例化多个
+       2. 给生成的html命名，默认index.html
+       3. 引入的js文件名，默认全部引入，文件名为entry中的属性名
+
+       ```javascript
+       plugins:[
+               new HtmlWebpackPlugin({
+                   template:'./index.html',
+                   filename:'index.html',
+                   chunks:['index']
+               }),
+            new HtmlWebPackPlugin({
+                   template:'./search.html',
+                   filename:'search.html',
+                   chunks:['search']
+               })
+           ]
+       ```
+   
+   * 其余功能
+   
+     可以在每个实例对象中添加minify属性，用于配置处理html文件的操作。
+   
+     ```javascript
+     minify: {
+     	//删除index.html 中的注释
+         removeComments: true,
+         //删除index.html中的空格
+         collapseWhitespace: true,
+     	//删除各种html标签属性值的双引号
+         removeAttributeQuotes: true
+     }
+     ```
+   
+     
 
 ### 应用
 
