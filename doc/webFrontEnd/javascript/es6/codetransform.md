@@ -18,7 +18,7 @@ Babel只能在语法层面上进行替换，像Object.assign、Promise等API，B
    npm install --save-dev core-js
    ```
 
-2. 在顶层文件中使用impoert导入core-js/stable
+2. 在顶层文件中使用import导入core-js/stable
 
 ### CLI环境使用
 
@@ -35,8 +35,10 @@ Babel只能在语法层面上进行替换，像Object.assign、Promise等API，B
 2. 安装babel
 
    > ```
-   > npm install --save-dev @babel/core @babel/cli
+   > npm install --save-dev @babel/core @babel/cli @babel/preset-env
    > ```
+   >
+   > present-env包里面存放了转换操作的代码，cli包用于命令行使用，core包负责调度。
    >
    > --save-dev表示只在编译阶段需要，使用这种方式默认安装最新版，如果需要安装指定版本可以书写如下命令
    >
@@ -44,7 +46,7 @@ Babel只能在语法层面上进行替换，像Object.assign、Promise等API，B
    > npm install --save-dev @babel/core@7.11.0 @babel/cli@7.10.5
    > ```
 
-3. 编译命令
+3. 配置package.json
 
    在package.json文件的script中添加下面的语句
 
@@ -58,16 +60,12 @@ Babel只能在语法层面上进行替换，像Object.assign、Promise等API，B
 
 4. 配置文件
 
-   配置文件告诉babel需要转换的js版本。需要安装present-env包，里面存放了转换操作的代码。
+   配置文件告诉babel需要转换的js版本。
 
-   ```
-   npm install @babel/preset-env --save-dev
-   ```
-
-   在根目录下创建babel.config.json文件，书写如下内容
-
+   在项目目录下创建babel.config.json文件，书写如下内容
+   
    ```json
-   {  "presets": ["@babel/preset-env"] }
+{  "presets": ["@babel/preset-env"] }
    ```
 
 ## Webpack
@@ -90,7 +88,17 @@ webpack是静态模块打包器，当webpack处理应用程序时，会将所有
    npm install --save-dev webpack-cli@3.3.12 webpack@4.44.1
    ```
 
-3. 配置webpack
+3. 配置package.json
+
+   在package.json文件的scripts中添加
+
+   ```json
+   "webpack":"webpack"
+   //如果配置文件名不是webpack.config.js，需要指定文件
+   "webpack":"webpack  --config webpack.config.js"
+   ```
+
+4. 配置webpack
 
    创建webpack.config.js文件用来存放配置信息
 
@@ -107,13 +115,9 @@ webpack是静态模块打包器，当webpack处理应用程序时，会将所有
    };
    ```
 
-4. 打包并测试
+5. 打包并测试
 
-   在package.json文件的scripts中添加
-
-   ```json
-   "webpack":"webpack --config webpack.config.js"
-   ```
+   使用`npm run webpack`执行打包操作。
 
 ### 核心概念
 
@@ -236,12 +240,145 @@ loader被用于帮助webpack处理各种模块，而插件则可以用于执行�
      }
      ```
    
-     
 
 ### 应用
 
-处理css文件
+#### 处理css文件
 
-处理图片
+**内联到html文件**
 
-搭建开发环境
+1. 在工作目录初始化项目
+
+2. 安装webpack包
+
+3. 创建配置文件
+
+4. 安装htmlWebpackPlugin
+
+5. 安装css-loader、style-loader
+
+6. 在配置文件中配置加载器
+
+   ```javascript
+   rules:[
+       {test:/\.css$/,
+       use:['style-loader','css-loader']}
+   ]
+   ```
+
+   > 如果是多个加载器，处理顺序从右到左
+
+**通过link引入**
+
+步骤与前者类似，需要使用miniCssExtractPlugin，将style-loader替换为miniCssExtractPlugin.loader
+
+#### 处理图片
+
+只有本地图片需要考虑使用webpack。
+
+**css中的图片**
+
+css中的图片可以使用file-loader处理。
+
+file-loader处理图片的两个阶段：1.复制图片 2.修改css中图片的路径。
+
+1. 安装loader
+
+2. 配置rules
+
+   ```javascript
+   {
+       test:/\.(jpg|png|gif)$/,
+       use:{
+           loader:'file-loader',
+           options:{
+               name:'img/[name].[ext]'
+           }
+       }
+   }
+   ```
+
+   如果图片路径不对，可以通过对loader配置options解决。
+
+   ```javascript
+   {
+       test:/\.css$/,
+       use:[{
+           loader:MiniCssExtractPlugin.loader,
+           options:{
+               publicPath:'../'
+           }
+       },
+       'css-loader']
+   }
+   ```
+
+**html中的图片**
+
+html中的图片需要使用html-withimg-loader处理，该loader会调用file-loader。
+
+1. 安装loader
+
+2. 配置rules
+
+   ```javascript
+   {
+       test:/\.(jpg|png|gif)$/,
+       use:{
+           loader:'file-loader',
+           options:{
+               name:'img/[name].[ext]',
+               esModuler:false
+           }
+       }
+   },
+   {
+       test:/\.(htm|html)$/,
+       loader:'html-withimg-loader'
+   }
+   ```
+
+**js中的图片**
+
+js中的图片同样可以借助file-loader处理。
+
+js中引入图片的方式如下：
+
+```javascript
+import img from './img/logo.png'
+```
+
+**url-loader**
+
+file-loader功能过于单一，url-loader提供了更多处理图片的功能，底层使用了file-loader。
+
+```javascript
+{
+    test:/\.(jpg|png|gif)$/,
+    use:{
+        loader:'url-loader',
+        options:{
+            name:'img/[name].[ext]',
+            esModuler:false,
+            limit:10000 //将小于10k的图片转化为base64格式
+        }
+    }
+}
+```
+
+#### 搭建开发环境
+
+使用webpack-dev-server可以实现自动打包的效果，执行一遍后如果文件修改后保存会自动打包。打包后的文件保存在内存中，不在磁盘上生成文件。
+
+1. 安装webpack-dev-server
+
+2. 在package.json配置scripts
+
+   ```json
+   "scripts":{
+       "webpack":"webpack",
+       "dev":"webpack-dev-server --open chrome"
+   }
+   ```
+
+   
