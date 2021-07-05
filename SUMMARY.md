@@ -2,7 +2,6 @@
 
 * [Introduction](README.md)
 * [HTML5](doc/html/README.md)
-
     * [语法与基础标签](doc/html/gram_basetag.md)
     * [列表标签](doc/html/list.md)
     * [多媒体与语义化标签](doc/html/mediumtag.md)
@@ -21,7 +20,7 @@
     * [过渡与动画](doc/css/animate.md)
     * [多媒体查询](doc/css/media.md)
 * [javaScript](doc/javascript/README.md)
-    *  [基础](doc/javascript/base/README.md)
+    * [基础](doc/javascript/base/README.md)
         *  [数据类型](doc/javascript/base/datatype.md)
         *  [变量与运算符](doc/javascript/base/operator.md)
         *  [流程控制](doc/javascript/base/processcontrol.md)
