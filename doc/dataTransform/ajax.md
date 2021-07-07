@@ -63,7 +63,7 @@ xhr.send(null);
 
 ### XHR对象
 
-#### XHR属性
+#### 属性
 
 | 属性            | 作用                                                         |
 | --------------- | ------------------------------------------------------------ |
@@ -74,6 +74,51 @@ xhr.send(null);
 | withCredentials | 指定使用ajax发送跨域请求携带cookie，IE10兼容                 |
 
 > 使用ajax发送请求，不设置withCredentials时，同域会携带cookie，跨域不会。xhr设置了withCredentials，如果服务器响应头字段Access-Control-Allow-Origin值没有请求的域名，跨域会失败。
+
+#### 方法
+
+| 方法               | 说明           |
+| ------------------ | -------------- |
+| abort()            | 终止当前请求   |
+| setRequestHeader() | 设置请求头信息 |
+
+> 一般通过setRequestHeader方法设置Content-Type，从而告诉服务器传递的数据格式。
+>
+> ```javascript
+> xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+> ```
+
+#### 事件
+
+* load
+
+  load事件在响应数据可用时触发，可以替代readystatechange事件。
+
+  load事件兼容到IE9，与addEventListner兼容性一致，因而两者可以搭配使用。
+
+  ```javascript
+  xhr.addEventListner(
+  	'load',
+      ()=>{
+          if(xhr.status>=200&&xhr.status<300||xhr.status===304){
+              //process
+          }
+      },
+      false
+  );
+  ```
+
+* error
+
+  error事件在请求发生错误时触发。IE10兼容。
+
+* abort
+
+  abort事件在调用abort方法终止请求时触发。IE10兼容。
+
+* timeout
+
+  timeout事件在请求超时时触发。IE8兼容。
 
 ### 跨域
 
@@ -102,6 +147,25 @@ xhr.send(null);
   1. 服务器端准备JSONP接口
   2. 使用script标签加载接口
   3. 声明需要处理资源的函数
+
+### 应用
+
+#### 提交表单数据
+
+使用ajax提交表单数据可以实现页面不跳转的功效。在获取表单数据时，可以使用模板字符串依次拼接，但是这种方法效率低效耦合度高，可以使用FormData简化操作。
+
+* FormData
+
+  FormData用于从表单dom元素中取出需要发送的数据，并将这些数据按照mutipart/form-data格式编码。IE10兼容。
+
+  使用FormData时，xhr对象不需要设置请求头的Content-Type，在请求发送时，浏览器会添加上。
+
+  ```javascript
+  const data = new FormData(formDom);
+  xhr.send(data);
+  ```
+
+  FormData有append方法可以用于额外添加数据。
 
 ## Json
 
