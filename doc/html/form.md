@@ -3,13 +3,15 @@
 所有HTML表单都以一个&lt;form>元素开始
 
 ```html
-<form action = "save.php" method="post">
+<form action = "save.php" method="post" enctype="multipart/form-data">
 </form>
 ```
 
 > action属性表示表单要提交到的后台程序的网址
 >
 > method属性表示表单提交的方式，有get或post
+>
+> enctype属性表示表单提交的数据格式
 
 ## input元素
 
