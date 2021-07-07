@@ -2,13 +2,13 @@
 
 本地存储是将数据保存在浏览器的存储类别。本地存储有两种方式：Cookie和localStorage。
 
-### Cookie
+## Cookie
 
 Cookie，全称是HTTP Cookie，存储的网页域名下的Cookie会随着该网页的请求而被浏览器发送到服务器。
 
 Cookie主要用于记录用户在该网站的访问信息，比如，访问网页的时间、停留时间等。
 
-#### Cookie属性
+### Cookie属性
 
 * 名称与值
 
@@ -56,7 +56,7 @@ Cookie主要用于记录用户在该网站的访问信息，比如，访问网�
 
   Secure限定了只有在使用https的情况下才可以把cookie发送给服务器。
 
-#### Cookie操作
+### Cookie操作
 
 * 读取
 
@@ -66,11 +66,118 @@ Cookie主要用于记录用户在该网站的访问信息，比如，访问网�
 
   对document.cookie用“key=value”的形式赋值，可以将该键值对写入cookie，这个方式只能逐个写入。
 
-### localStorage
+### 封装
+
+```javascript
+class Cookie {
+    constructor(name, value) {
+        this._name = encodeURIComponent(name);
+        this._value = encodeURIComponent(value);
+        this._attr = {
+            "max-age": undefined,
+            domain: undefined,
+            path: "/",
+            secure: false
+        }
+    }
+    get name() {
+        return decodeURIComponent(this._name);
+    }
+    get value() {
+        return decodeURIComponent(this._value);
+    }
+    get path(){
+        return this._attr["path"];
+    }
+    get domain(){
+        return this._attr["domain"];
+    }
+    setMaxAge(second) {
+        this._attr["max-age"] = second;
+        return this;
+    }
+    setDomain(domain) {
+        this._attr["domain"] = domain;
+        return this;
+    }
+    setPath(path) {
+        this._attr["path"] = path;
+        return this;
+    }
+    setSecure() {
+        this._attr["secure"] = true;
+        return this;
+    }
+    toString() {
+        return `${this._name}=${this._value};` + Object.keys(this._attr).map(attrName => this._parse(attrName)).join("");
+    }
+    _parse(attrName) {
+        if (this._attr[attrName]) {
+            return `${attrName}=${this._attr[attrName]};`;
+        }
+        return "";
+    }
+}
+
+function addMethod(cls,name,func) {
+    let oldFunc = cls.prototype[name];
+    cls.prototype[name] = function(){
+        if(func.length===arguments.length){
+            func.apply(this,arguments);
+        }else if(typeof oldFunc ==="function"){
+            oldFunc.apply(this,arguments);
+        }
+    }
+}
+
+class CookieDepository {
+    get cookies() {
+        return document.cookie.split(";").map(singleString => { 
+            const cookie = singleString.split("=").map(str=>str.trim());
+            return {
+                name:cookie[0],
+                value:cookie[1]
+            }
+        }).map(({name,value})=>new Cookie(name,value))
+    }
+    add(cookie){
+        this._set(cookie);
+    }
+    addAll(cookies){
+        cookies.forEach(cookie=>this._set(cookie));
+    }
+    clearAll(){
+        this.cookies.forEach(cookie=>this.remove(cookie));
+    }
+    _set(cookie){
+        document.cookie = cookie.toString();
+    }
+}
+
+addMethod(CookieDepository,"remove",function(cookie){
+    cookie.setMaxAge(-1);
+    this._set(cookie);
+});
+addMethod(CookieDepository,"remove",function(name,value){
+    this.remove(new Cookie(name,value));
+});
+/*
+	how to use
+		const username = new Cookie("name", "alex").setMaxAge(100);
+        const userAge = new Cookie("age", 12);
+        const userSex = new Cookie("sex", "male");
+        const depository = new CookieDepository();
+        depository.add(username);
+        depository.add(userAge);
+        depository.add(userSex);
+*/
+```
+
+## localStorage
 
 localStorage是一种浏览器存储数据的方式，该数据只限定于浏览器读取，不会被发送到服务器。
 
-#### localStorage用法
+### localStorage用法
 
 localStorage存储数据是键值对。
 
