@@ -8,7 +8,7 @@ prototype属性值是个对象，它默认拥有constructor属性指回函数
 
 构造函数的prototype属性是它的实例的原型
 
-![](../../../../images/prototype.jpg)
+![](../../../images/prototype.jpg)
 
 ### 原型链
 
