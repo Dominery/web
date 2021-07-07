@@ -58,7 +58,7 @@
 * [数据交互](doc/dataTransform/README.md)
     * [HTTP协议](doc/dataTransform/http.md)
     * [本地存储](doc/dataTransform/storage.md)
-    * [Ajax](doc/dataTransform/ajax.md)
+    * [数据传输](doc/dataTransform/ajax.md)
 * [主流框架与小程序](doc/frame/README.md)
     * [小程序](doc/frame/README.md)
     * [React.js](doc/frame/react/README.md)
