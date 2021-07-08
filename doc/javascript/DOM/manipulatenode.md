@@ -32,7 +32,7 @@ document对象的nodeType属性值是9
 
 #### 元素节点的关系
 
-![](../../../../images/domNodeRel.jpg)
+![](../../../images/domNodeRel.jpg)
 
 在标准的W3C规范中，空白文本节点也应该算作节点，但是在lE8及以前的浏览器中会有一定的兼容问题，它们不把空文本节点当做节点。从IE9开始支持一些“只考虑元素节点”的属性，从而排除文本节点的干扰。
 
@@ -78,7 +78,7 @@ innerText属性只能以纯文本的形式设置节点中的内容
 
   1. 使用setAttribute()和getAttribute()来设置、读取
 
-  2. 使用dataset.`<attrName>`设置、读取
+  2. 如果属性符合`data-<attrName>`的格式，可以使用dataset.`<attrName>`设置、读取，IE11兼容
 
 #### 移动节点
 
