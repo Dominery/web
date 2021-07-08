@@ -173,6 +173,94 @@ xhr.send(null);
 
 为了保证在用户快速输入时，不发送请求，需要使用延迟器调用事件响应函数，如果事件在延迟器执行前触发，旧的延迟器被清除，创建一个新的延迟器。
 
+### 第三方通信库
+
+#### axios
+
+[axios](http://www.axios-js.com/zh-cn/docs/)是一个基于Promise实现ajax的HTTP库，适用于浏览器和Node.js。
+
+**使用**
+
+1. 引入axios
+
+   通过script标签引入axios库，网址是`https://unpkg.com/axios@0.21.1/dist/axios.min.js`
+
+2. 基本使用
+
+   ```javascript
+   axios(url,{
+       method:"get",
+       headers:{
+           "Content-Type":"applicaiton/json"
+       },
+       params:{
+           username:'dom'
+       },
+       data:{
+           age:23,
+           sex:"male"
+       }
+   }).then(response=>{
+       
+   }).catch(err=>{
+       
+   })
+   ```
+
+   > 传入的data属性值需要与Content-Type属性值进行匹配，axios内部没有机制保证Content-Type属性值与data属性值一致。
+   >
+   > 可以通过response.data.data的方式获取到响应返回的值。
+
+3. 提供的静态方法
+
+   axios提供get、post等方法用于处理专门的http请求。其中post方法的第二个参数为data，不需要传配置信息。
+
+#### Fetch
+
+Fetch是前后端数据传输的方式，作为ajax的一种替代方案。
+
+**使用**
+
+1. 调用fetch函数获得Promise对象
+
+2. 基本使用
+
+   ```javascript
+   fetch(url)
+   .then(response=>{
+       if(response.ok){
+           return response.json();
+       }else{
+           throw new Error(`Http status ${response.status}`);
+       }
+   }).then(data=>{
+       console.log(data);
+   }).catch(err=>{
+       console.log(err);
+   })
+   ```
+
+   > 如果返回的数据是json格式，调用response.json()返回一个Promise对象，获取到的data是js对象。
+   >
+   > 如果返回的数据是非json格式，调用response.text()返回Promise对象，获取到的data是字符串。
+
+3. 配置参数
+
+   fetch函数的第二个参数是对象，保存配置参数信息。
+
+   ```javascript
+   {
+       method:"post",
+       body:"username=dom&age=23",
+       headers:{
+           'Content-Type':'application/x-www-form-urlencoded'
+       }，
+       credentials:'include'//跨域携带cookie
+   }
+   ```
+
+   > fetch的body属性值是传递的数据，只能传递字符串和formData实例。
+
 ## Json
 
 json，全称是JavaScript Object Notation，是一种数据格式，主要用于规范ajax发送和接收的数据格式。
