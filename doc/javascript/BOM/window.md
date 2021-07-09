@@ -37,29 +37,6 @@ window对象是当前JS脚本运行所处的窗口，而这个窗口中包含DOM
 
 获得不包含滚动条的窗口宽度，要用document.documentElement.clientWidth
 
-**确定页面视口大小代码**
-
-```javascript
-function getPageWidthAndHeight(){
-    var width = window.innerWidth,
-        height = window.innerHeight;
-   
-    if(typeof pageWidth !="number"){
-        if(document.compatMode=="CSS1Compat"){
-            width = document.documentElement.clientWidth;
-            height = document.documentElement.clientHeight;
-        }else{
-            width = document.body.clientWidth;
-            height = document.body.clientHeight;
-        }
-    }
-    return {
-        width:width,
-        height:height
-    }
-}
-```
-
 #### 已卷动高度
 
 window.scrollY属性表示在垂直方向已滚动的像素值。
