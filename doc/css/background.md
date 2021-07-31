@@ -63,7 +63,7 @@ background-origin属性用来设置背景图像的位置区域。background-orig
 | padding-box | 从内边距开始平铺（默认值） |
 | content-box | 从内容区开始平铺           |
 
-![](../../../images/bgc-origin.png)
+![](../../images/bgc-origin.png)
 
 #### 背景固定
 
