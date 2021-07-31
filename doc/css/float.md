@@ -45,10 +45,10 @@
 
     * 给后面的父盒子设置clear:both属性。clear表示清除浮动对自己的影响，both表示左右浮动都清除。该方法的副作用是后面父盒子的margin-top会失效，因为前一个父盒子高度依旧为0。
 
-    * 使用::after伪元素给盒子添加最后一个子元素，并且给::after设置clear:both。
+    * 使用:after伪元素给盒子添加最后一个子元素，并且给::after设置clear:both。
 
         ```css
-        .clearfix::after{
+        .clearfix:after{
             content:'';
             clear:both;
             display:block;
