@@ -175,6 +175,17 @@ col类族，如col-1、col-md-3等，用于设置在不同屏幕尺寸下的宽�
 .col-pull-0{
     right:auto;    
 }
+@media(min-width:576px){
+    .col-sm-offset-0{
+        margin-left:0;
+    }
+    .col-sm-push-0{
+        left:auto;
+    }
+    .col-sm-pull-0{
+        right:auto;
+    }
+}
 /*flex中通过order改变位置，其中offset与float方法中一样
 .col-order-first{
 	order:-1;
