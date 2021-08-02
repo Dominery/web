@@ -50,11 +50,15 @@
 
 ### 开发
 
+栅格系统的开发需要借助媒体查询，栅格的形成有两种方法：float和flex。以下将主要以float开发栅格系统作为示例。
+
 #### 基础部分
 
 **container**
 
 container类用于使元素居中显示，在不同屏幕尺寸下通过媒体查询改变width值实现不同的居中效果。
+
+> flex开发中container无需改变
 
 ```css
 .container{
@@ -79,6 +83,12 @@ row类元素用于包裹col类族元素，其中margin设置为负值用于在co
 .row{
     margin-left:-15px;
     margin-right:-15px;
+    /*flex开发时更改为
+    display:flex;
+    flex-wrap:wrap;
+    margin-left:-15px;
+    margin-right:-15px;
+    */
 }
 ```
 
@@ -89,9 +99,24 @@ col类族，如col-1、col-md-3等，用于设置在不同屏幕尺寸下的宽�
 ```css
 .col-1,.col-2,.col-12{
     float:left;
+    /*flex开发时
+    无需设置该样式
+    */
 }
+/*flex开发时增加
+.col{
+    flex-basis:0;
+    flex-grow:1;
+    padding-left:15px;
+    padding-right:15px;
+    with:100%;
+}
+*/
 .col-1{
     width:8.333333%;
+    /*flex开发时更改为
+    flex:0 0 8.3333333%;
+    */
 }
 /*其他的col样式
 */
@@ -110,6 +135,11 @@ col类族，如col-1、col-md-3等，用于设置在不同屏幕尺寸下的宽�
     padding-left:15px;
     padding-right:15px;
     position:relative;
+    /*flex开发时更改为
+    padding-left:15px;
+    padding-right:15px;
+    with:100%;
+    */
 }
 ```
 
@@ -121,6 +151,8 @@ col类族，如col-1、col-md-3等，用于设置在不同屏幕尺寸下的宽�
     display:table;
     clear:both;
 }
+/*flex开发时无需清除浮动
+*/
 ```
 
 #### 拓展部分
@@ -141,19 +173,16 @@ col类族，如col-1、col-md-3等，用于设置在不同屏幕尺寸下的宽�
     left:auto;
 }
 .col-pull-0{
-    right:auto;
+    right:auto;    
 }
-@media(min-width:576px){
-    .col-sm-offset-0{
-        margin-left:0;
-    }
-    .col-sm-push-0{
-        left:auto;
-    }
-    .col-sm-pull-0{
-        right:auto;
-    }
+/*flex中通过order改变位置，其中offset与float方法中一样
+.col-order-first{
+	order:-1;
 }
+.col-order-0{
+	order:0;
+}
+*/
 ```
 
 **改变显示**
