@@ -22,15 +22,21 @@
 
 * 缩放-放大
 
-  缩放和放大的本质的是CSS像素的变化，缩放时dpr减小，放大时dpr增大。
+  缩放和放大的本质的是一个CSS像素对应于物理像素个数的变化。
 
 * PPI
 
   PPI，pixels per inch，表示每英寸的物理像素点，又可以称为dpi，dots per inch。
 
+![](../../images/dpr_initial-scale.png)
+
+上图中iPhone6的手机逻辑像素为375px*667px，dpr为2，则iPhone6的逻辑像素为750px\*1334px，如果dpr为1，则iPhone6的逻辑像素为375px\*667px。
+
+页面缩放比initial-scale=手机逻辑像素/页面css像素，图中initial-scale=1，则页面宽度css像素为375px，如果initial-scale=0.5，则页面宽度css像素为750px。
+
 ## 视口
 
-视口是设备屏幕上当前可见文档以css像素为单位的图形区域。
+视口是设备屏幕上当前可见文档以css像素为单位的图形区域。如果视口宽度大于手机屏幕宽度的逻辑像素，那么浏览器会进行缩放使手机屏幕能容纳视口。
 
 * 视口的设置
 
