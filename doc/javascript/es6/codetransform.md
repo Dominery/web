@@ -494,7 +494,7 @@ art-template提供在模板中引入其他模板的功能，称引入的模板�
 2. 安装webpack需要的包
 
    ```
-   npm install --save-dev webpack-cli@3.3.12 webpack@4.44.1 art-template-loader@1.4.3 rt-template-webpack> html-webpack-plugin@4.3.0 
+   npm install --save-dev webpack-cli@3.3.12 webpack@4.44.1 art-template-loader@1.4.3  html-webpack-plugin@4.3.0 
    ```
 
 3. 安装art-template包
