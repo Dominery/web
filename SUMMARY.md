@@ -64,6 +64,7 @@
     * [响应式布局](doc/mobileWeb/responsiveUI.md)
     * [移动端屏幕适配](doc/mobileWeb/screenAdapt.md)
     * [移动端事件](doc/mobileWeb/event.md)
+    * [移动端调试](doc/mobileWeb/debug.md)
 * [主流框架与小程序](doc/frame/README.md)
     * [小程序](doc/frame/README.md)
     * [React.js](doc/frame/react/README.md)
