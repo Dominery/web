@@ -202,7 +202,7 @@
 
 固定定位:不管页面如何卷动，它永远固定在那里。
 
-![](../../../images/fixed.webp)
+![](../../images/fixed.webp)
 
 通过设置position属性为fixed及位置描述词，可以实现固定定位。
 
