@@ -49,7 +49,7 @@ transition : width 1s linear 0s ;
 
 * 常用的缓动参数
 
-![](../../../images/timing-func.png)
+![](../../images/timing-func.png)
 
 * 自定义动画缓动参数
 
@@ -96,3 +96,4 @@ transition : width 1s linear 0s ;
 
   用百分数替代from和to可以实现多关键帧动画
 
+[Animate.css](https://animate.style/)提供了已经书写好的动画效果，如果需要可以在项目中引入。
