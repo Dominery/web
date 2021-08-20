@@ -127,9 +127,10 @@ arguments对象是最常见的类数组对象。
 可以通过以下方法将类数组对象转换为数组对象：
 
 1. Array.from(arguments)
-2. [...arguments]
-3. [...new Set(arguments)]
-4. for...of遍历
+2. Array.prototype.slice.call(arguments)
+3. [...arguments]
+4. [...new Set(arguments)]
+5. for...of遍历
 
 ### 引用类型
 
