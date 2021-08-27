@@ -68,6 +68,7 @@
     * [移动端调试](doc/mobileWeb/debug.md)
     * [移动端常见问题](doc/mobileWeb/problem.md)
     * [性能优化](doc/mobileWeb/capability.md)
+    * [swiper](doc/mobileWeb/swiper.md)
 * [框架](doc/frame/README.md)
     * [小程序](doc/frame/miniProgram.md)
     * [React.js](doc/frame/react/README.md)
