@@ -57,7 +57,7 @@
 循环
 
 ```wxml
-<block wx:for = "{{users}}">
+<block wx:for = "{{users}}" wx:key="*this">
 	<view>hello</view>
 	<view>{{item.name}} {{index}}</view>
 </block>
