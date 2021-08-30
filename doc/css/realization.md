@@ -22,7 +22,7 @@ flex布局不能和单行文字溢出一起使用。
 .multiline-ellipsis{
     overflow:hidden;
     text-overflow:ellipsis;
-    didplay:-webkit-box;
+    display:-webkit-box;
     -webkit-line-clamp:3;
     -webkit-box-orient:vertical;
     white-space:normal !important;
