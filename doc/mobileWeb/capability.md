@@ -119,7 +119,7 @@ DOM操作是很耗性能的行为。DOM操作优化可以从加快单次DOM操�
   var timer = null;
   window.addEventListener("scroll",function(){
     clearTimeout(timer);
-    timer = setTimerout(function(){},100);
+    timer = setTimeout(function(){},100);
   })
   ```
 
