@@ -8,6 +8,10 @@ box-sizing
 
 外边距margin不会因为border-box而被作为元素宽高一部分。
 
+-webkit-tap-highlight-color
+
+移动端的a标签元素点击后会有蓝色高亮背景，可以通过设置-webkit-tap-highlight-color为transparent去除这个背景。
+
 ### 数据单位
 
 | 单位 | 说明                 |
