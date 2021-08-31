@@ -101,14 +101,11 @@
 
 * 使用示例
 
-    ```html
 <audio controls>
         <source src="music/hangpai.mp3" type="audio/mpeg">
         <source src="music/hangpai.ogg" type-"audio/ogg">
         <source src="music/hangpai.wav" type="audio/wav">
     </audio>
-    ```
-
 ## 语义化标签
 
 ### HTML5区块标签
