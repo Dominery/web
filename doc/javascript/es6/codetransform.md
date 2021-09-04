@@ -377,7 +377,7 @@ file-loader功能过于单一，url-loader提供了更多处理图片的功能�
    ```json
    "scripts":{
        "webpack":"webpack",
-       "dev":"webpack-dev-server --open chrome"
+       "start":"webpack-dev-server --open chrome"
    }
    ```
 
