@@ -49,6 +49,12 @@
 
 子组件如果需要传递的数据作为初始值，显示的数据在初始值的基础上变化，那么可以在子组件的data中定义自己的数据。
 
+#### 多重传值
+
+如果父组件需要向孙子组件等多重子组件传值，使用props方法会有冗余代码，可以使用provide、inject语法。
+
+父组件定义一个provide属性对象，该对象的属性为需要传值的变量，子组件通过inject数组接收数据。通过这种方法实现多重传值，数据只会传递一次，子组件与数据没有双向绑定关系。
+
 ### 事件
 
 如果子组件需要对父组件的数据进行修改，子组件可以产生一个事件，父组件接收事件后再对数据进行修改。
@@ -99,5 +105,49 @@ v-model可以自定义修饰符，子组件通过在props对象中的modelModifi
 
 如果父组件没有传递内容，子组件的slot标签的内容则会显示。
 
+#### 具名插槽
+
 如果父组件传递的内容需要在子组件内进行拆分，那么需要使用具名插槽，给每个子内容通过`v-slot`进行命名，子组件通过name属性指定子内容。
+
+#### 作用域插槽
+
+当子组件中的数据显示方式需要由父组件决定时，可以使用作用域插槽，子组件将数据进行属性绑定，父组件通过`v-slot="slotProps"`接收数据。
+
+```vue
+<list v-slot="slotProps">
+	<div>
+        {{slotProps}}
+    </div>
+</list>
+
+//list
+<div>
+    <slot :item="data"></slot>
+</div>
+```
+
+## 组件调用
+
+### 动态组件
+
+如果需要通过一个变量控制多个子组件的切换，那么可以使用动态组件。
+
+如果需要一个组件切换回来时能够保存之前的数据，需要在`component`标签外包裹`keep-alive`标签。
+
+```vue
+<component :is="currentItem" />
+<button @click="handleClick">
+    切换
+</button>
+```
+
+### 异步组件
+
+```javascript
+app.component('async-item',Vue.defineAsyncComponent(()=>{
+    return new Promise((resolve,reject)=>{
+        
+    });
+}))
+```
 
