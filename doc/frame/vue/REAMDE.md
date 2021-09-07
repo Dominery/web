@@ -134,3 +134,23 @@ v-for可以实现
 
 #### 事件绑定
 
+## Mixin
+
+mixin是一个对象，可以包含组件内的属性和方法。可以将mixin对象添加到组件中的mixins数组中，从而使组件能够使用mixin。
+
+### 规则
+
+如果组件和mixin中存在相同名称的数据和方法，那么组件中该数据或方法优先级更高。
+
+如果组件和mixin都定义了生命周期函数，那么程序运行时，两者的生命周期函数都会被执行，mixin中的会先执行。
+
+如果组件和mixin都存在相同的自定义属性，那么组件里的该属性优先级更高。自定义属性的优先级可以修改。
+
+> 在模板中访问自定义属性需要通过this.$options.attr，attr是属性名
+
+```javascript
+app.config.optionMergeStrategies.number=(mixinValue,appValue)=>{
+    return mixinValue || appValue;
+}
+```
+
