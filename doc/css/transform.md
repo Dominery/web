@@ -55,7 +55,7 @@ transform属性的属性值包含平移、旋转、缩放等多个效果，对�
 
   如下为各轴旋转方向
 
-  ![](../../../images/transform_coordinate.png)
+  ![](../../images/transform_coordinate.png)
 
   **perspective属性**
 
