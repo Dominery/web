@@ -7,3 +7,56 @@ nodejs是一个基于ChromeV8引擎的Javascript运行时。
 > 运行时是代码的运行环境
 
 nodejs出现以前，只有浏览器才能执行js代码
+
+## npm
+
+npm，全称node package manager，是nodejs软件包管理器。[官网](https://www.npmjs.com/)中能够搜索到各种软件包。
+
+### 命令
+
+| 命令                        | 说明                               |
+| --------------------------- | ---------------------------------- |
+| npm init                    | 初始化项目目录                     |
+| npm install                 | 安装package里的依赖项              |
+| npm i lodash                | 安装lodash                         |
+| npm update                  | 更新所有软件包，可以指定单个软件包 |
+| npm run [task-name]         | 指定命令行任务运行                 |
+| npm list                    | 查看所有软件包及其依赖包的信息     |
+| npm view [package] versions | 查看指定软件包所有以前的版本       |
+| npm uninstall [package]     | 卸载指定软件包                     |
+
+#### 安装
+
+npm安装软件包有两种安装方式，本地安装和全局安装，它们安装软件包的路径不同。
+
+当使用`npm install [package-name]`时，软件包会被安装在项目目录的node_modules文件夹中。
+
+**参数**
+
+npm安装时可以通过参数指定依赖项的使用方式。
+
+* --save
+
+  如果在代码中需要使用依赖项，那么要指定--save。依赖项信息会被添加到package的dependencies中
+
+* -dev
+
+  如果依赖项仅在开发环境使用，那么要指定-dev。依赖项信息会被添加到package的devDependencies中
+
+npm安装时可以使用@语法指定安装依赖项的版本。如`npm install webpack@1.2.0`。
+
+如果在安装命令中加-g参数，则软件包会被安装在全局位置中，可以使用`npm root -g`获知具体位置。
+
+#### 卸载
+
+因为软件包的安装方式不同，卸载软件包可以根据卸载需求设置相应参数。
+
+卸载全局依赖时要使用-g。
+
+卸载本地软件包时，如果要移除在package中的引用，通过-S或--save从dependencies移除，通过-D或者--save-dev从devDependencies中移除。
+
+### 配置文件
+
+项目目录中会有两个配置文件，package.json和pacakge-lock.json。
+
+package.json记录当前项目依赖软件包的版本信息。package-lock.json中记录项目中使用所有依赖的信息，包括来源、版本号等。package-lock中记录的依赖要多于package。
