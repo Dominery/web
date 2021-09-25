@@ -8,6 +8,12 @@ nodejs是一个基于ChromeV8引擎的Javascript运行时。
 
 nodejs出现以前，只有浏览器才能执行js代码
 
+**nodejs与前端js**
+
+nodejs与前端js使用的都是js语言，但是两者提供的API不同。在nodejs环境下，无法使用如window、dom等webAPI。
+
+前端js=js语法+Web API；nodejs = js语法 + nodejs API。
+
 ## npm
 
 npm，全称node package manager，是nodejs软件包管理器。[官网](https://www.npmjs.com/)中能够搜索到各种软件包。
@@ -60,3 +66,29 @@ npm安装时可以使用@语法指定安装依赖项的版本。如`npm install 
 项目目录中会有两个配置文件，package.json和pacakge-lock.json。
 
 package.json记录当前项目依赖软件包的版本信息。package-lock.json中记录项目中使用所有依赖的信息，包括来源、版本号等。package-lock中记录的依赖要多于package。
+
+## commonjs
+
+comonjs和ES6 Module都是JavaScript的模块系统。
+
+### commonjs和ES6 Module的区别
+
+commonjs是执行时引入，可以将模块导入语句放在任何位置，这种特性称为动态；ES6 Module是打包时引入，只能在全局作用域且最顶层的位置书写模块导入语句，这种特性称为静态。
+
+require三个层次
+
+* 系统自带模块
+* npm包
+* 自定义模块
+
+## debug
+
+如果想要对提供后端服务代码进行debug，那么可以使用inspect调试法。
+
+### inspect调试法
+
+* 修改package内的scripts，增加--inspect
+* 在想要调试的地方增加debugger关键字，重启服务
+* 打开chrome，访问chrome://inspect，进入target的inspect
+* 新开chrome标签页，在上面输入请求的url
+* 进入inspect界面，inspect上的js代码会停留在debugger位置
