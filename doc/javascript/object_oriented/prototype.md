@@ -42,4 +42,4 @@ Object.prototype是所有原型链的终点。
 
 使用Javascript特有的原型链特性来实现继承，是普遍的做法
 
-![](../../../../images/inherit.jpg)
+![](../../../images/inherit.jpg)
