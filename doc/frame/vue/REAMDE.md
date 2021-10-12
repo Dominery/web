@@ -4,6 +4,18 @@ vue是一个前端开发框架，利用了mvvm设计模式，使开发者能够�
 
 > mvvm由model、view、viewModel的首字母缩写构成，存在数据、视图、视图数据连接三层。
 
+## 开发环境搭建
+
+Vue提供了两种使用方式：
+
+1. 通过在html文件引入`https://unpkg.com/vue@next`
+2. 通过脚手架工具编码，Vue官方提供了Vue-cli
+
+Vue项目创建
+
+1. `npm install -g @vue/cli`
+2. 使用`vue create [dirname]`创建项目
+
 引入vue之后，可以通过Vue.createApp函数创建vue应用，传入的参数表示该应用的根组件。
 
 | 生命周期函数   | 执行时刻                 |
