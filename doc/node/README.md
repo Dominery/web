@@ -31,6 +31,15 @@ npm，全称node package manager，是nodejs软件包管理器。[官网](https:
 | npm view [package] versions | 查看指定软件包所有以前的版本       |
 | npm uninstall [package]     | 卸载指定软件包                     |
 
+#### 镜像源
+
+因为npm存在安装软件包速度慢的问题，可以通过npm全局安装nrm，nrm能够设置npm的镜像源，加快软件包安装速度。
+
+| 命令           | 说明             |
+| -------------- | ---------------- |
+| nrm ls         | 显示所有的镜像源 |
+| nrm use taobao | 使用taobao镜像源 |
+
 #### 安装
 
 npm安装软件包有两种安装方式，本地安装和全局安装，它们安装软件包的路径不同。
@@ -66,6 +75,10 @@ npm安装时可以使用@语法指定安装依赖项的版本。如`npm install 
 项目目录中会有两个配置文件，package.json和pacakge-lock.json。
 
 package.json记录当前项目依赖软件包的版本信息。package-lock.json中记录项目中使用所有依赖的信息，包括来源、版本号等。package-lock中记录的依赖要多于package。
+
+#### 项目命令
+
+package.json中scripts存储该项目可以运行的指令，需要通过在命令行输入`npm run [instraction]`运行。
 
 ## commonjs
 
