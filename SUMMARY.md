@@ -55,6 +55,10 @@
         * [Class](doc/javascript/es6/class.md)
         * [Module模块](doc/javascript/es6/module.md)
         * [代码转换](doc/javascript/es6/codetransform.md)
+* [TypeScript](doc/typescript/README.md)
+    * 基础
+        * [数据类型](doc/typescript/base/datatype.md)
+    * [面向对象](doc/typescript/object_oriented/README.md)
 * [数据交互](doc/dataTransform/README.md)
     * [HTTP协议](doc/dataTransform/http.md)
     * [本地存储](doc/dataTransform/storage.md)
