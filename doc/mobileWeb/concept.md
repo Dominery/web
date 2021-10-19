@@ -30,7 +30,7 @@
 
 ![](../../images/dpr_initial-scale.png)
 
-上图中iPhone6的手机逻辑像素为375px*667px，dpr为2，则iPhone6的逻辑像素为750px\*1334px，如果dpr为1，则iPhone6的逻辑像素为375px\*667px。
+上图中iPhone6的手机逻辑像素为375px/667px，dpr为2，则iPhone6的物理像素为750px/1334px。物理像素和逻辑像素不会改变。
 
 页面缩放比initial-scale=手机逻辑像素/页面css像素，图中initial-scale=1，则页面宽度css像素为375px，如果initial-scale=0.5，则页面宽度css像素为750px。
 
