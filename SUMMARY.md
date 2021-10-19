@@ -8,7 +8,6 @@
     * [表单标签](doc/html/form.md)
     * [表格标签](doc/html/table.md)
 * [CSS](doc/css/README.md)
-    * [基础入门](doc/css/firststep.md)
     * [选择器](doc/css/selector.md)
     * [文本与字体属性](doc/css/text.md)
     * [盒模型](doc/css/box.md)
