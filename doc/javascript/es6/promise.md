@@ -188,22 +188,19 @@ async/await是基于Promise实现的异步操作。
 function hasEmptyAttr (obj) {
   return Object.values(obj).some(value => value === '')
 }
-
-function emptyCheck (data) {
-  return new Promise((resolve, reject) => {
-    if (hasEmptyAttr(data)) {
-      reject(new Error('has empty input'))
+function validator(predict,message) {
+  return data => new Promise((resolve, reject) => {
+    if (predict(data)) {
+      resolve(data)
     }
-    resolve(data)
+    reject(new Error(message))
   })
 }
+function emptyCheck (data) {
+  return !hasEmptyAttr(data)
+}
 function confirmSame (data) {
-  return new Promise((resolve, reject) => {
-    if (data.password !== data.confirm) {
-      reject(new Error('password not correspond'))
-    }
-    resolve(data)
-  })
+  return data.password === data.confirm
 }
 async function submitData (data) {
   try {
@@ -214,15 +211,84 @@ async function submitData (data) {
 }
 const registerClick = () => {
     const data = activeToObj(form)
-    emptyCheck(data)
-      .then(confirmSame)
+    validator(emptyCheck,'has empty input')(data)
+      .then(validator(confirmSame,'password not correspond'))
       .then(submitData)
       .then(successRegister)
       .catch(err => { registerInfo.value = err.message })
 }
 ```
 
+使用函数式实现注册校验：
 
+```js
+function compose (...fns) {
+  return fns.reduce((fn1, fn2) => {
+    return (...args) => {
+      return fn1(fn2(...args))
+    }
+  })
+}
+/**
+ * 如果校验函数从左到右依次对data进行校验，如果校验错误返回message
+ * @param  {...any} validators 校验函数
+ * @returns function 接收成功回调函数
+ */
+function checkerAll (...validators) {
+  const funcChain = validators.map(validator => next => async data => {
+    if (!validator(data)) return validator.message
+    return await next(data)
+  })
+  return successHandler => {
+    if (typeof successHandler !== 'function') throw Error('successHandler must be function')
+    return compose(...funcChain)(successHandler)
+  }
+}
+
+/**
+ * 将谓词函数转变为验证函数
+ * @param {string} message 错误消息
+ * @param {function} fun 谓词函数
+ * @returns function
+ */
+function validator (message, fun) {
+  const f = (...args) => {
+    return fun.apply(fun, args)
+  }
+  f.message = message
+  return f
+}
+async function submitData (data) {
+  try {
+    await register({ username: data.username, password: data.password })
+  } catch (err) {
+    return Promise.reject(new Error(getErrorMessage(err)))
+  }
+}
+function emptyCheck (data) {
+  return !hasEmptyAttr(data)
+}
+function passwordConfirmCheck (data) {
+  return data.password === data.confirm
+}
+const message = checkerAll(validator('has empty input', emptyCheck), validator('password not correspond', passwordConfirmCheck))(async data => {
+      try {
+        await submitData(data)
+        return successHandler()
+      } catch (err) {
+        return err
+      }
+    })(data)
+message.then(info => {
+      registerInfo.value = info
+    })
+function successHandler () {
+    setTimeout(() => {
+      router.push({ name: 'Login' })
+    }, 1000)
+    return 'success to register'
+}
+```
 
 ### 示例代码
 

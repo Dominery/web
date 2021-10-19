@@ -81,7 +81,7 @@
 
     * 常用音频格式是mp3和ogg格式。
 
-      >  ogg:一种新的音频压宿格式，是完全免费、开放和没有专利限制的
+      >  ogg:一种新的音频压缩格式，是完全免费、开放和没有专利限制的
       >
       >  mp3:是一种音频压缩技术。它被设计用来大幅度地降低音频数据量
       >
@@ -101,11 +101,16 @@
 
 * 使用示例
 
+```html
 <audio controls>
         <source src="music/hangpai.mp3" type="audio/mpeg">
         <source src="music/hangpai.ogg" type-"audio/ogg">
         <source src="music/hangpai.wav" type="audio/wav">
-    </audio>
+</audio>
+```
+
+
+
 ## 语义化标签
 
 ### HTML5区块标签

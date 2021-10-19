@@ -1,21 +1,28 @@
 # 函数
 
-函数就是语句的封装，可以让这些代码方便地被复用
+函数就是语句的封装，可以让这些代码方便地被复用。每个函数都是Function类型的实例，而且都与其他引用类型一样具有属性和方法。函数名是指向函数的指针，跟其余变量相同。
 
 和变量类似，函数必须先定义然后才能使用
 
-使用function关键字定义函数，function是“功能”的意思
+## 函数定义
 
-定义方式：
+函数定义的方式有三种：
 
-1. 函数名
+1. 函数声明语法
+
 2. 函数表达式
 
-## 函数定义
+3. Function构造函数
+
+   ```js
+   let sum  = new Function('num1','num2','return num1+num2')
+   ```
+
+因函数是对象，函数名是变量指针，如果对函数名进行赋值操作，则该函数无法被访问。所以JavaScript中函数原生不支持方法重载。然而可以借助函数arguments或剩余参数实现函数重载。
 
 ### 函数声明提升
 
-JavaScript中通过函数名定义的函数可以先使用后声明，函数表达式的函数名应用变量提升规则。
+JavaScript中通过函数声明语法定义的函数可以先使用后声明，函数表达式的函数名应用变量提升规则。
 
 如果变量与函数名相同，则函数优先提升，变量声明提升不能覆盖函数。
 
@@ -33,7 +40,7 @@ JavaScript中函数调用实参个数可以不需要与形参相同。函数形�
 
 实参个数少于形参个数，则剩余的形参值默认为undefined
 
-函数内arguments表示它接收到的实参列表，它是一个类数组对象
+函数内arguments是一个类数组对象，存储接收到的实参。这个对象还有一个名叫callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数。
 
 #### 函数参数默认值
 
@@ -74,7 +81,28 @@ const sum = (...args) => args.reduce((a,b)=>a+b);
   const {age,name,...args} = {name:"suyu",age:23,tel:110}
   ```
 
-  
+
+#### 函数重载实现
+
+```js
+function addFunc(oldFn,newFn) {
+    return function (...args) {
+        if(args.length === newFn.length){
+            return newFn.apply(this,args)
+        }
+        if(typeof oldFn === "function"){
+            return oldFn.apply(this,args)
+        }
+    }   
+}
+function sum() {
+    return 1
+}
+
+sum = addFunc(sum,function (num1,num2) {
+    return num1 + num2
+})
+```
 
 ### 函数返回值
 
@@ -83,6 +111,20 @@ const sum = (...args) => args.reduce((a,b)=>a+b);
 调用函数时，一旦遇见return语句则会立即退出函数，将执行权交还给调用者
 
 ## 函数调用
+
+### 函数属性和方法
+
+函数都包括length、prototype属性和apply、call、bind方法。
+
+length属性保存函数命名时的参数。
+
+apply、call、bind能够用于设置函数调用时的this指向。
+
+apply和call作用相同，设置函数this指向并调用函数，apply接收两个参数，作用域对象和数组。call接收多个对象，作用域对象和函数参数。
+
+bind会返回一个设置函数this指向的新函数。
+
+使用call、apply能够将对象与方法解耦。
 
 ### 作用域链
 
