@@ -78,6 +78,10 @@ font-family:serif, "Times New Roman", "微软雅黑";
 
 行高决定内联盒子高度;行间距，可大可小(甚至负值)，保证高度正好等同于行高。
 
+#### text-overflow
+
+text-overflow：ellipsis，设置文本溢出省略号表示，该溢出效果需要设置overflow：hidden。
+
 **属性值说明**
 
 * normal

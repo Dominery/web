@@ -90,4 +90,5 @@
 * [面试题](doc/audition/README.md)
     * [HTML](doc/audition/html.md)
     * [CSS](doc/audition/css.md)
+    * [javascript](doc/audition/js.md)
 
