@@ -81,29 +81,6 @@ const sum = (...args) => args.reduce((a,b)=>a+b);
   const {age,name,...args} = {name:"suyu",age:23,tel:110}
   ```
 
-
-#### 函数重载实现
-
-```js
-function addFunc(oldFn,newFn) {
-    return function (...args) {
-        if(args.length === newFn.length){
-            return newFn.apply(this,args)
-        }
-        if(typeof oldFn === "function"){
-            return oldFn.apply(this,args)
-        }
-    }   
-}
-function sum() {
-    return 1
-}
-
-sum = addFunc(sum,function (num1,num2) {
-    return num1 + num2
-})
-```
-
 ### 函数返回值
 
 调用一个有返回值的函数，可以被当做一个普通值，从而可以出现在任何可以书写值的地方

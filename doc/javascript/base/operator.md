@@ -142,6 +142,30 @@ JavaScript中通过var定义的变量可以先使用后声明。这种特性叫�
 
 隐式转换的本质是内部调用Number()函数
 
+#### 引用值相等函数
+
+下面这个函数可以判断两个引用类型的值是否相等。
+
+```js
+function deepEqual(value1,value2){
+    if(value1===value2)return true;
+    else if(value1===null || value2===null)return false;
+    else if(typeof value1==="object" && typeof value2==="object")return objAttrEqual(value1,value2);
+    else return false;
+    
+    function objAttrEqual(objA,objB){
+        let lengthObjB= 0
+        for(let attr in objB){
+            lengthObjB += 1;
+            if(! (attr in objA) || 			!deepEqual(objA[attr],objB[attr]))return false;
+        }
+        return lengthObjB===Object.keys(objA).length;
+	}
+}
+```
+
+
+
 ### 逻辑表达式
 
 | 运算符 | 意义 |

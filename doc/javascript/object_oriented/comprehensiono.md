@@ -118,14 +118,14 @@ var obj2 = Object.assign({},obj1);
 
 ```javascript
 function deepClone(value) {
-    var result;
+    let result;
     if(Array.isArray(value)){
         result = value.map(deepClone);
     }else if(typeof value ==="object"){
-        result = {};
-        for(var key in value){
-            result[key] = deepClone(value[key]);
-        }
+        result = Object.entries(value).reduce((result,[key,value])=>{
+            result[key] = deepClone(value);
+            return result;
+        },{})
     }else{
         result = value;
     }
