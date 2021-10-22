@@ -43,6 +43,8 @@ background-size属性用来设置背景图片的尺寸，兼容到IE9。有以�
 
    * cover表示将背景图片智能改变尺寸以撑满盒子
 
+`<img>`元素有object-fit属性能够实现和背景尺寸相同的功能。该object-fit默认为fill，整个图片会缩放以填满区域。还可以设置该属性为cover或contain。
+
 #### 背景裁切
 
 background-clip 属性用来设置元素的背景裁切到哪个盒子。兼容到IE9。

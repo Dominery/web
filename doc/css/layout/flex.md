@@ -2,7 +2,7 @@
 
 Flex，全称弹性盒子布局（Flexible Box Layout），是一种新的布局方式。Flex能够轻松解决等高列和垂直居中的问题。
 
-## 原则
+## 原理
 
 如果元素中display属性值设置为flex或inline-flex，那么称该元素采用了flex布局，该元素成为了一个弹性容器(flex container)。弹性容器中的直接子元素成为弹性子元素(flext item)，称为flex项目。
 
