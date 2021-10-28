@@ -114,7 +114,7 @@ clear:both;
 
 ## BFC规范
 
-BFC (Box Formatting Context，块级格式化上下文)是页面上的一个隔离的独立容器，容器里面的子元素与外面的元素重叠或相互影响。
+BFC (Box Formatting Context，块级格式化上下文)是页面上的一个隔离的独立容器，容器里面的子元素不与外面的元素重叠或相互影响。
 
 ### BFC作用
 
@@ -128,7 +128,7 @@ BFC (Box Formatting Context，块级格式化上下文)是页面上的一个隔�
 
 2. position值不是static或者relative
 
-3. display值是inline-block、table-cell、table-caption、flex、inline-flex、grid、inline-grid
+3. display值是inline-block、table、table-cell、table-caption、flex、inline-flex、grid、inline-grid
 
 4. overflow值不为visible
 
