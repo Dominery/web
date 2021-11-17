@@ -118,26 +118,30 @@ var obj2 = Object.assign({},obj1);
 
 ```javascript
 function deepClone(value) {
+    if(typeof value !== 'object' || value == null)	{
+        return value
+    }
     let result;
     if(Array.isArray(value)){
         result = value.map(deepClone);
-    }else if(typeof value ==="object"){
+    }else{
         result = Object.entries(value).reduce((result,[key,value])=>{
             result[key] = deepClone(value);
             return result;
         },{})
-    }else{
-        result = value;
     }
     return result;
 }
 function deepCopy(value) {
-    if (Array.isArray(value))return copyElementFor(value,[]);
-    else if(typeof value==="object")return copyElementFor(value,{});
-    else return value;
+    if(typeof value !== 'object' || value == null) return value;
+    else if(Array.isArray(value))return copyElementFor(value,[]);
+    else return copyElementFor(value,{});
 
     function copyElementFor(value,collection) {
         for(var attr in value){
+           if(!value.hasOwnProperty(attr)){
+               continue;
+           }
            collection[attr] = deepCopy(value[attr]);
         }
         return collection;

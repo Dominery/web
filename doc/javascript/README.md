@@ -16,19 +16,23 @@ JavaScript特性更新速度很快，但用户使用的浏览器可能并不能�
 
 ### 基于原型的面向对象
 
-## 前端js体系
+## js体系
 
-前端JavaScript体系由三部分组成。ECMAScript提供核心语言功能，DOM提供访问与操作页面的方法和接口，BOM提供与浏览器交互的方法和接口。
+JavaScript语言由语法(ECMAScript)和API构成，根部不同场景下提供的api可以将JavaScript分为前端js、Nodejs、小程序中js等。
 
-### 语言核心(ECMAScript)
+### ECMAScript
 
 1997年,欧洲计算机制造商协会(ECMA)设置了JavaScript的标准，命名为ECMAScript。
 
 ECMAScript就是对实现该标准规定的各个方面内容的语言的描述。规定了语言的组成部分：语法、类型、语句、关键字、保留字、操作符、对象。
 
-JavaScript实现了ECMAScript。ECMAScript规范了JavaScript。
+JavaScript实现了ECMAScript语法的要求。
 
-### 文档对象模型(DOM)
+### 前端js
+
+前端JavaScript体系由三部分组成。ECMAScript提供核心语言功能，DOM提供访问与操作页面的方法和接口，BOM提供与浏览器交互的方法和接口。
+
+#### 文档对象模型(DOM)
 
 文档对象模型（DOM, Document Object Model）是针对XML但经过扩展用于HTML的应用程序编程接口是，Web应用的结构化的UI表现形式
 
@@ -36,7 +40,7 @@ JavaScript实现了ECMAScript。ECMAScript规范了JavaScript。
 
 DOM把整个页面映射为一个多层节点结构。HTML或XML页面中的每个组成部分都是某种类型的节点，这些节点又包含着不同类型的数据。
 
-### 浏览器对象模型(BOM)
+#### 浏览器对象模型(BOM)
 
 BOM没有建立统一的标准，每个浏览器都有自己的实现。
 

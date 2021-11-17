@@ -1,6 +1,6 @@
 # 组件
 
-页面可以拆分成多个组件。在react中，如果一个类继承了React.Component，那么这个类称为组件。
+页面可以拆分成多个组件。react中的组件可以通过两种方式声明，function和class。使用class方式需要类继承React.Component，function需要return一个jsx表达式。
 
 组件需要声明render方法，该方法返回值是符合JSX语法的元素标签，要支持JSX语法需要引入React。
 
