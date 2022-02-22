@@ -84,7 +84,7 @@ innerText属性只能以纯文本的形式设置节点中的内容
 
 #### 移动节点
 
-如果将已经挂载到DOM树上的节点成为appenacnia()或白insertBefore()的参数，这个节点将会被移动。
+如果将已经挂载到DOM树上的节点成为appendchild()或insertBefore()的参数，这个节点将会被移动。
 
 ### 创建节点
 

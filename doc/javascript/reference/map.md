@@ -21,3 +21,4 @@ map和对象都是键值对集合。但对象使用字符串作为键，map的�
 | clear   | 清空map                                     |
 | forEach | 两个参数，回调函数、对象作为函数上下文      |
 
+与Object只能使用数值、字符串或符号作为键不同，Map可以使用任何JavaScript数据类型作为键。Map内部使用SameValueZero比较操作。
