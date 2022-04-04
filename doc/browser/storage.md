@@ -1,6 +1,24 @@
 # 本地存储
 
-本地存储是将数据保存在浏览器的存储类别。本地存储有两种方式：Cookie和localStorage。
+本地存储是将数据保存在浏览器的存储类别。本地存储方式：Cookie、localStorage、sessionStorage、IndexedDB。
+
+## 差异
+
+1. 存储大小
+
+   localStorage、sessionStorage小于5M，cookie小于4K
+
+2. 有效性
+
+   localStorage持久化存储，sessionStorage在浏览器窗口关闭前有效，cookie在设定的过期时间之前有效。
+
+3. 共享机制
+
+   localStorage、cookie在所有同源窗口中都是共享的，sessionStorage每个窗口独立
+
+4. 传递方式
+
+   cookie用于在浏览器和服务器间传递，sessionStorage、localStorage仅在本地存储
 
 ## Cookie
 
@@ -65,113 +83,6 @@ Cookie主要用于记录用户在该网站的访问信息，比如，访问网�
 * 写入
 
   对document.cookie用“key=value”的形式赋值，可以将该键值对写入cookie，这个方式只能逐个写入。
-
-### 封装
-
-```javascript
-class Cookie {
-    constructor(name, value) {
-        this._name = encodeURIComponent(name);
-        this._value = encodeURIComponent(value);
-        this._attr = {
-            "max-age": undefined,
-            domain: undefined,
-            path: "/",
-            secure: false
-        }
-    }
-    get name() {
-        return decodeURIComponent(this._name);
-    }
-    get value() {
-        return decodeURIComponent(this._value);
-    }
-    get path(){
-        return this._attr["path"];
-    }
-    get domain(){
-        return this._attr["domain"];
-    }
-    setMaxAge(second) {
-        this._attr["max-age"] = second;
-        return this;
-    }
-    setDomain(domain) {
-        this._attr["domain"] = domain;
-        return this;
-    }
-    setPath(path) {
-        this._attr["path"] = path;
-        return this;
-    }
-    setSecure() {
-        this._attr["secure"] = true;
-        return this;
-    }
-    toString() {
-        return `${this._name}=${this._value};` + Object.keys(this._attr).map(attrName => this._parse(attrName)).join("");
-    }
-    _parse(attrName) {
-        if (this._attr[attrName]) {
-            return `${attrName}=${this._attr[attrName]};`;
-        }
-        return "";
-    }
-}
-
-function addMethod(cls,name,func) {
-    let oldFunc = cls.prototype[name];
-    cls.prototype[name] = function(){
-        if(func.length===arguments.length){
-            func.apply(this,arguments);
-        }else if(typeof oldFunc ==="function"){
-            oldFunc.apply(this,arguments);
-        }
-    }
-}
-
-class CookieDepository {
-    get cookies() {
-        return document.cookie.split(";").map(singleString => { 
-            const cookie = singleString.split("=").map(str=>str.trim());
-            return {
-                name:cookie[0],
-                value:cookie[1]
-            }
-        }).map(({name,value})=>new Cookie(name,value))
-    }
-    add(cookie){
-        this._set(cookie);
-    }
-    addAll(cookies){
-        cookies.forEach(cookie=>this._set(cookie));
-    }
-    clearAll(){
-        this.cookies.forEach(cookie=>this.remove(cookie));
-    }
-    _set(cookie){
-        document.cookie = cookie.toString();
-    }
-}
-
-addMethod(CookieDepository,"remove",function(cookie){
-    cookie.setMaxAge(-1);
-    this._set(cookie);
-});
-addMethod(CookieDepository,"remove",function(name,value){
-    this.remove(new Cookie(name,value));
-});
-/*
-	how to use
-		const username = new Cookie("name", "alex").setMaxAge(100);
-        const userAge = new Cookie("age", 12);
-        const userSex = new Cookie("sex", "male");
-        const depository = new CookieDepository();
-        depository.add(username);
-        depository.add(userAge);
-        depository.add(userSex);
-*/
-```
 
 ## localStorage
 
