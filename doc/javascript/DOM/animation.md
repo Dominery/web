@@ -63,7 +63,7 @@ var lock=false;
 function Lock(processFunc){
     if(lock)return;
     processFunc();
-    setTimeInterval(()=>lock=true,2000);
+    setTimeout(()=>lock=true,2000);
 }
 ```
 

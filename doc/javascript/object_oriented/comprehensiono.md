@@ -132,7 +132,22 @@ function deepClone(value) {
     }
     return result;
 }
-function deepCopy(value) {
+function deepClone(value,cache=new WeakMap()){
+    if(!(value instanceof Object)) return value;
+    if(cache.get(value)) return cache.get(value);
+    
+    if(value instanceof Date) return new Date(value);
+    if(value instanceof RegExp) return new RegExp(value.source,value.flags);
+
+    const result = Array.isArray(value) ? []:{};
+    cache.set(value,result);
+    Object.keys(value).forEach(key=>{
+        result[key] = deepClone(value[key],cache);
+    })
+    
+    return result;
+}
+function deepClone(value) {
     if(typeof value !== 'object' || value == null) return value;
     else if(Array.isArray(value))return copyElementFor(value,[]);
     else return copyElementFor(value,{});
