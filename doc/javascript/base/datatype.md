@@ -4,6 +4,8 @@
 
 在ECMAScript 2015规范中定义了七种内置数据类型：number、string、boolean、undifined、null、symbol、object。除object外，其余类型都属于基本数据类型。
 
+Object.prototype.toString()可以检测所有数据类型。
+
 typeof运算符可以检测值类型，返回类型的字符串值。然而存在两个例外，null是唯一一个用typeof检测会返回object的基础数据类型，函数是对象，用typeof检测会返回function。
 
 | 类型名    | typeof检测结果 |
@@ -62,7 +64,9 @@ js中如果一个数字大于等于1e21输出时会使用科学计数法（如`1
 
   0除以0的结果是NaN，事实上，在数学运算中，若结果不能得到数字，其结果往往都是NaN。
 
-  isNaN()函数可以用来判断变量值是否为NaN。但isNaN()也不好用，它的机理是:只要该变量传入Number()的执行结果是NaN，则isNaN()函数都会得到true。
+  isNaN()函数可以用来判断变量值是否为NaN。它的机理是:只要该变量传入Number()的执行结果是NaN，则isNaN()函数都会得到true。
+
+  es6提供了Number.isNaN()函数，会先判断变量是否是数字类型，再判断是否为NaN。
 
 * infinite
 
@@ -77,6 +81,8 @@ js中如果一个数字大于等于1e21输出时会使用科学计数法（如`1
 ### 字符串类型
 
 JavaScript使用UTF-16编码来表示一个字符。UTF-16编码以两个字节作为一个编码单元，每个字符使用一个编码单元或者两个编码单元来表示。
+
+JSON.stringify()和JSON.parse()可以将js对象序列化和反序列化，如果一个对象中存在循环引用、undifined、symbol、function等不符合JSON结构的值，那么JSON.stringify()方法不能正常执行，循环引用会报错，其余情况会被忽略，在数组中返回null。如果对象中定义了toJSON()方法，JSON字符串化时会首先调用该方法，然后用它的返回值来进行序列化。
 
 字符串字面量要用引号包裹，双引号或者单引号均可
 
@@ -135,7 +141,7 @@ JavaScript使用UTF-16编码来表示一个字符。UTF-16编码以两个字节�
     
   * 替换方法
 
-    replaceAll方法接收两个参数searchValue和replacement。searchValue表示搜索模式，可以字符串或全局的正则表达式，replacement是待替换的文本。
+    replaceAll方法接收两个参数searchValue和replacement。searchValue表示搜索模式，可以字符串或全局的正则表达式，replacement是待替换的文本，可以使用`$1`获取匹配的组。
 
     如果replaceAll的搜索模式是一个不带g修饰符的正则表达式，则replaceAll会报错。
 
@@ -242,7 +248,7 @@ ToPrimitive是一个抽象操作，将非基本类型的值转换为基本类型
 
 `+`运算符即能用于数字加法，也能用于字符串拼接。用于字符串拼接时会发生隐式强制类型转换。
 
-如果`+`的其中一个操作数是字符串或者能够通过如下步骤能转换为字符串，`+`将执行拼接操作。使用ToPrimitive操作后再使用[[DefaultValue]]，以数字作为上下文。
+如果`+`的其中一个操作数是字符串或者能够通过如下步骤能转换为字符串，`+`将执行拼接操作。使用ToPrimitive操作后再使用[[DefaultValue]]，以数字作为上下文。a + ""会对a调用valueOf()方法，然后通过ToString抽象操作将返回值转换为字符串。
 
 #### 数字
 
@@ -251,6 +257,10 @@ ToPrimitive是一个抽象操作，将非基本类型的值转换为基本类型
 #### 布尔值
 
 布尔值隐式强制类型转换发生在条件判断表达式中，如if、for、while、||等，非布尔值会被强制类型转换为布尔值，转换规则同Boolean()方法。
+
+>[] +{}//[object object]
+>
+>{} + [] //0 {}被当做空代码块，如果使用({})替换，则结果与上一行相同
 
 ## 原生函数
 

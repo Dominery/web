@@ -24,6 +24,10 @@ arguments对象是最常见的类数组对象。
 
 数组用typeof检测结果是object
 
+* instanceof
+* Array.isArray()
+* Object.prototype.toString()
+
 虽然`instanceof`能够检测一个对象是否是数组，但`instanceof`操作符基于构造函数，如果存在多个版本的Array构造函数，那么该检测方法就无效。因而ECMAScript新增了Array.isArray()方法用来检测数组
 
 #### 创建数组方法
@@ -90,7 +94,7 @@ for (var i = 0; i < arr.length; i++) {
 | splice()     | 替换数组中的指定项                                 |
 | slice(a, b)  | 截取[a,b)的子数组                                  |
 | concat(a,b)  | 合并数组a、b                                       |
-| reverse()    | 将一个数组中项顺序置反                             |
+| reverse()    | 将一个数组中项顺序置反，返回数组                   |
 | indexOf()    | 搜索数组中的元素，并返回它所在的位置               |
 | includes()   | 判断一个数组是否包含指定的值 es6                   |
 | sort()       | 数组排序                                           |
@@ -124,7 +128,7 @@ splice方法前两个参数分别代表起始下标、连续的项数，后面�
 
 #### concat
 
-concat会创建一个新数组，该新数组包含原有数组和传入数组参数的元素。如果传入参数不是数组，那么这些参数会被添加到新数组中。
+concat会创建一个新数组，该新数组包含原有数组和传入数组参数的元素。如果传入参数不是数组，那么这些参数会被添加到新数组中。类数组对象会转换为字符串后加入，除非类数组对象具有`Symbol.isConcatSpreadable`属性。
 
 #### Array.from
 

@@ -48,7 +48,7 @@ class Demo extends React.Component{
 
 React事件对象是React封装的SyntheticEvent类型，拥有DOM事件所有功能，可以通过nativeEvent获取原生事件对象。React中所有事件都被挂载到document上。
 
-事件处理函数参数列表最后一个用于接收event。
+事件处理函数参数列表最后一个用于接收event。React事件处理函数不能通过返回false方式阻止默认行为，必须显示调用preventDefault。
 
 ## props
 

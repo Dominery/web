@@ -88,8 +88,10 @@ function addMethod(obj,name,func) {
 
 和遍历数组类似，对象也可以被遍历，遍历对象需要使用for. . .in.. .循环
 
-1. 使用for. . .in...循环可以遍历对象的每个键。
-2. 使用Objec.keys()返回由对象键构成的数组，对该数组遍历
+1. 使用for. . .in...循环可以遍历对象的每个键。该方法会遍历原型链上的属性。
+2. 使用Objec.keys()、Object.values()、Object.entries()返回由对象本身键、值、键值对构成的数组
+
+> for..in和Object.keys()等方法会忽略Symbol类型的键，Object.fromEntries()可以将键值对数组转换为对象
 
 ### 对象的克隆
 
