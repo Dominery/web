@@ -26,7 +26,10 @@ Context 设计目的是为了共享那些对于一个组件树而言是“全局
 
 1. React.createContext()创建context对象，传入默认值
 2. 传入数据使用context对象的Provider组件，value属性为共享数据
-3. 消费数据：class组件定义静态属性contextType赋值为context对象，使用this.context获取共享数据；函数组件使用useContext()传入context对象返回共享数据或使用context对象的Consumer组件，插入一个函数
+3. 消费数据：
+   * class组件消费context对象定义静态属性contextType赋值为context对象，使用this.context获取共享数据，只能订阅单个Context
+   * 函数组件使用useContext()传入context对象返回共享数据
+   * 使用context对象的Consumer组件，组件内包裹一个回调函数接收value值，如果想要消费多个context，需要多层包裹
 
 ## 异步组件
 

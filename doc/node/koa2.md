@@ -86,3 +86,34 @@ db.on('error', err=>{
 module.exports = mongoose
 ```
 
+## 中间件
+
+### compose
+
+```javascript
+const compose = (...[first, ...other]) =>(...args) => {
+    let result = first(...args);
+    other.forEach(func => {
+        result = func(result);
+    });
+    return result;
+}
+
+// 支持next的compose函数
+function compose(middlewares) {
+    return function(){
+        dispatch(0);
+    }
+    function dispatch(i) {
+        const func = middlewares[i];
+        if (!func) return Promise.resolve();
+
+        return Promise.resolve(
+            func(function next(){
+                return dispatch(i + 1);
+            })
+        )
+   }
+}
+```
+

@@ -29,7 +29,7 @@ script元素有6个属性：
 
 1. 在&lt;body>中&lt;script>标签，在内部书写JavaScript代码
 
-   > 嵌入JavaScript代码时，不要在代码中出现"&lt;/script>"字符串，浏览器会将其解析成结束标签，可以写成"&lt;\/script>"来解决。
+   > 嵌入JavaScript代码时，不要在代码中出现"&lt;/script>"字符串，浏览器会将其解析成结束标签，可以写成"&lt;/script>"来解决。
 
 2. 将代码单独保存为.js格式文件，然后在HTML文件中使用&lt;script src="">&lt;/script>这样的形式引入它。
 

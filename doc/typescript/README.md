@@ -30,3 +30,27 @@ TypeScript具有类型推演、类型匹配的功能，全面兼容JavaScript语
   5. 在pakage.json中添加运行命令`"tsc":"tsc"`
   6. 下载开发依赖包`@types/node`、`typescript`
   7. 通过`npm run tsc`编译所有typescript文件
+
+## 类型系统
+
+### 类型安全
+
+从类型安全的角度，编程语言分为强类型和弱类型语言。在语言层面限制函数的实参类型和形参类型必须相同。弱类型不会限制实参类型。
+
+强类型不允许有数据隐式类型转换，弱类型允许数据隐式类型转换。
+
+强类型优势
+
+* 错误更早暴露
+* 代码更智能，编码更准确
+* 重构更牢靠
+* 减少不必要的类型判断
+
+#### Flow
+
+JavaScript的类型检查器。通过在代码中添加类型注解的方式，Flow判断代码运行时是否有类型错误。
+
+**移除类型注解**
+
+1. flow-remove-types
+2. @babel/core、@babel/cli、@babel/preset-flow

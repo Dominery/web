@@ -1,5 +1,82 @@
 # babel
 
+Babel 是一个 JavaScript 编译器，用于将 ECMAScript 2015+ 版本的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前版本和旧版本的浏览器或其他环境中。
+
+**处理流程**
+
+1. 词法分析，将源代码分割成Token数组
+2. 语法分析，将Token数组转换为AST，此时需要使用语法插件
+3. 遍历(访问器模式)AST，应用转换插件转换代码
+4. 代码生成，将AST转换为源代码
+
+## babel架构
+
+ `Babel` 和 `Webpack` 为了适应复杂的定制需求和频繁的功能变化，都使用了[微内核](https://juejin.cn/post/6844903943068205064#heading-10) 的架构风格。
+
+### @babel/core
+
+@babel/core 是内核，主要功能：
+
+1. 加载和处理配置
+2. 加载插件
+3. 调用Parser 进行语法解析，生成AST
+4. 调用 `Traverser` 遍历AST，并使用`访问者模式`应用'插件'对 AST 进行转换
+5. 生成代码，包括SourceMap转换和源代码生成
+
+### 核心支撑
+
+#### Parser
+
+@babel/parser将源代码解析为AST，内置支持最新ECMAScript语法，不支持拓展。
+
+#### Traverser
+
+@babel/traverse 实现`访问者模式`，对 AST 进行遍历，`转换插件`会通过它获取感兴趣的AST节点，对节点继续操作
+
+#### Generator
+
+@babel/generator 将 AST 转换为源代码，支持 SourceMap
+
+### 插件
+
+#### 语法插件
+
+`@babel/plugin-syntax-*`用于开启或者配置Parser的某个功能特性
+
+#### 转换插件
+
+`@babel/plugin-transform-*`用于对 AST 进行转换, 实现转换为ES5代码、压缩、功能增强等目的
+
+#### 预定义集合
+
+`@babel/presets-*`插件集合或者分组，主要方便用户对插件进行管理和使用。
+
+presets执行顺序与定义时顺序相反。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Babel是js编译器，用来将es6的代码转换成es6之前的代码。
 
 Babel本身可以编译ES6的大部分语法，比如let、const、箭头函数、类，但是对于ES6新增的API，比如Set、Map、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign/Array.from)都不能直接编译，需要借助其它的模块。

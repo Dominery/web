@@ -37,13 +37,13 @@ grid-template-columns定义了垂直轨道的个数及轨道的宽度，如果�
 ```css
 .container {
 	display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr min-content 1fr;
     grid-template-rows: repeat(4, auto);
     grid-gap:1.5em;
 }
 ```
 
-上面代码中给网格容器定义了3个等宽的垂直轨道，4个长度auto的水平轨道。
+上面代码中给网格容器定义了左右两个等宽，中间为网格元素最小内容宽度的垂直轨道，4个长度auto的水平轨道。
 
 > 如果轨道大小设置为auto，轨道会根据自身内容拓展。
 
