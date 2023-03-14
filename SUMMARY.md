@@ -106,8 +106,4 @@
 * [Node.js](doc/node/README.md)
   * [处理HTTP](doc/node/http.md)
     * [koa2](doc/node/koa2.md)
-* [面试题](doc/audition/README.md)
-    * [HTML](doc/audition/html.md)
-    * [CSS](doc/audition/css.md)
-    * [javascript](doc/audition/js.md)
 
